@@ -2,7 +2,9 @@
 solita academy pre-assignment
 
 Frontend: React
+
 Backend: nodeJS / Express
+
 Database: Mongo
 
 
