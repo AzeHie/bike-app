@@ -1,5 +1,4 @@
-# solita-academy
-solita academy pre-assignment
+# solita-academy - pre-assignment
 
 Frontend: React
 
