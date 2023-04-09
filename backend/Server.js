@@ -38,7 +38,7 @@ app.use((error, req, res, next) => { // error handling middleware
 
 mongoose
 .connect(
-  "mongodb+srv://azehietala:SolitaMongo@city-bike.cna0i0r.mongodb.net/?retryWrites=true&w=majority"
+  "mongodb+srv://azehietala:SolitaMongo@city-bike.cna0i0r.mongodb.net/bike-app?retryWrites=true&w=majority"
   )
   .then(() => {
     console.log("Connected to database!");
