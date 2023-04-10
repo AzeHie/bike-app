@@ -9,15 +9,16 @@ const getJourneys = async (req, res, next) => {
   const itemsPerPage = 25;
 
   let sort = { [sortBy]: sortOrder };
+  console.log(sort);
   let journeys;
   try {
-    if (sort) {
-      // logic for sort here
+    if (sortBy && sortOrder) {
       journeys = await Journey.find({})
         .sort(sort)
         .skip(page * itemsPerPage)
         .limit(itemsPerPage);
     } else {
+      console.log("meni elseen");
       journeys = await Journey.find()
         .limit(itemsPerPage)
         .skip(page * itemsPerPage);
