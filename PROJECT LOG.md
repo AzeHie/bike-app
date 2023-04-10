@@ -10,3 +10,6 @@
   
 9.4.2023
   - Working with journey-controllers on backend. Added sorting and paginationg for data fetching, and possiblity to add new journeys. There was lot of new things for       me, since that it took awhile but I've learned lot of about pagination and sorting with mongoose. I decided to use query params in both cases (sorting and             pagination). Tested with POSTMAN and looks quite good, but let's see how it works with frontend too.
+
+10.4.2023
+  - Started working with frontend. Created folder structure, added components and pages. 
