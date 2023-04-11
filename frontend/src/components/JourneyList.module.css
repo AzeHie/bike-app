@@ -1,0 +1,4 @@
+.headerLine {
+  display: flex;
+  flex-direction: row;
+}
