@@ -13,3 +13,6 @@
 
 10.4.2023
   - Started working with frontend. Created folder structure, added components and pages. 
+
+11.4.2023
+  - Working with journeysList. Started working with routing, navigation.
