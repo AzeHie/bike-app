@@ -1,4 +1,4 @@
-# solita-academy - pre-assignment
+# solita pre-assignment
 
 Frontend: React & Typescript
 
