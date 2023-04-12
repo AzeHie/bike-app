@@ -15,7 +15,7 @@
   padding: 0.5rem 0 0.5rem 0;
 }
 
-.item-line {
+.station-item-line {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -23,11 +23,18 @@
   border-left: 1px solid gray;
   text-decoration: none;
   color: black;
+  transition: background-color 0.5s;
 }
 
-.item-line span {
+.station-item-line:hover {
+  background-color: rgb(115, 210, 115);
+}
+
+.station-item-line span {
   width: 100%;
   padding: 0.5rem 0 0.5rem 0;
   border-bottom: 1px solid gray;
   font-style: italic;
 }
+
+

@@ -6,6 +6,7 @@ import Journeys from "./pages/Journeys";
 import NewJourney from "./pages/NewJourney";
 import Stations from "./pages/Stations";
 import StationDetail from "./pages/StationDetail";
+import MainHeader from "./navigation/MainHeader";
 
 function App() {
   let routes: any;
@@ -15,14 +16,14 @@ function App() {
       <Route path="/" element={<Journeys />} />
       <Route path="/newjourney" element={<NewJourney />} />
       <Route path="/stations" element={<Stations />} />
-      <Route path="/station/:sid" element={<StationDetail />} />
+      <Route path="/stations/:stationId" element={<StationDetail />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 
   return (
     <Fragment>
-      <header></header>
+      <MainHeader />
       <main>{routes}</main>
     </Fragment>
   );

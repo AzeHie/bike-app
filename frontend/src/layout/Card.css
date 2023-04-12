@@ -1,0 +1,12 @@
+.card {
+  width: 90%;
+  min-height: 30rem;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 5rem;
+  padding: 1rem;
+  padding-top: 1.5rem;
+  box-shadow: 0 1px 10px 3px rgb(165, 165, 165);
+  background-color: rgb(213, 213, 213);
+  border-radius: 1rem;
+}

@@ -1,15 +1,16 @@
 import React from "react";
 import Journey from "../shared/models/Journey";
 
-import classes from "./JourneyList.module.css";
-import JourneyItem from "./JourneyItem";
+import JourneyItems from "./JourneyItems";
+import Card from "../layout/Card";
+
+// APP.CSS
 
 const JourneysList: React.FC<{ journeys: Journey[] }> = (props) => {
-  console.log(props.journeys);
 
   return (
-    <React.Fragment>
-      <div className={classes.headerLine}>
+    <Card>
+      <div className="header-line">
         <span>Depature time</span>
         <span>Return time</span>
         <span>Depature station</span>
@@ -18,7 +19,7 @@ const JourneysList: React.FC<{ journeys: Journey[] }> = (props) => {
         <span>Duration (hh:mm)</span>
       </div>
       {props.journeys.map((item) => (
-        <JourneyItem
+        <JourneyItems
           key={item.id}
           depatureTime={item.depatureTime}
           returnTime={item.returnTime}
@@ -28,7 +29,7 @@ const JourneysList: React.FC<{ journeys: Journey[] }> = (props) => {
           duration={item.duration}
         />
       ))}
-    </React.Fragment>
+    </Card>
   );
 };
 

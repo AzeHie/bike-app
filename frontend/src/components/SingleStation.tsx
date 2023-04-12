@@ -1,5 +1,9 @@
+import Card from "../layout/Card";
+
 const SingleStation: React.FC = () => {
-  return <div>single station</div>
+  return <Card>
+    
+  </Card>;
 };
 
 export default SingleStation;

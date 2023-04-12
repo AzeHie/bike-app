@@ -1,4 +1,4 @@
-import classes from "./JourneyItem.module.css";
+// APP.CSS
 
 const JourneyItem: React.FC<{
   depatureTime: string;
@@ -8,7 +8,7 @@ const JourneyItem: React.FC<{
   coveredDistance: number;
   duration: number;
 }> = (props) => {
-  return <div className={classes.itemLine}>
+  return <div className="item-line">
     <span>{props.depatureTime}</span>
     <span>{props.returnTime}</span>
     <span>{props.depatureStation}</span>
