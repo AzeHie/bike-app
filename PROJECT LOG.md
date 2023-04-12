@@ -15,7 +15,7 @@
   - Started working with frontend. Created folder structure, added components and pages. 
 
 11.4.2023
-  - Working with journeysList. Started working with routing, navigation.
+  - Frontend: Working with journeysList. Started working with routing, navigation.
 
 12.4.2023
-  - Finished routing / navigation and added app-wide styling. Working with journeysList and StationsList. I had some problems with props.children since there has been     some kind of update after I last time used it - but thankfully we have stackoverflow/youtube (:D). Atleast I know how to set type for that children prop nowadays.
+  - Finished frontend routing / navigation and added app-wide styling. Working with journeysList and StationsList. I had some problems with props.children since there     has been some kind of update after I last time used it - but thankfully we have stackoverflow/youtube (:D). Atleast I know how to set type for that children prop       nowadays.
