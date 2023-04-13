@@ -2,11 +2,11 @@ import React from "react";
 import Journey from "../shared/models/Journey";
 
 import JourneyItems from "./JourneyItems";
-import Card from "../layout/Card";
+import Card from "../shared/layout/Card";
 
 // APP.CSS
 
-const JourneysList: React.FC<{ journeys: Journey[] }> = (props) => {
+const JourneyList: React.FC<{ journeys: Journey[] }> = (props) => {
 
   return (
     <Card>
@@ -33,4 +33,4 @@ const JourneysList: React.FC<{ journeys: Journey[] }> = (props) => {
   );
 };
 
-export default JourneysList;
+export default JourneyList;

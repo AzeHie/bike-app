@@ -1,5 +1,5 @@
 import React from "react";
-import JourneysList from "../components/JourneysList";
+import JourneyList from "../components/JourneyList";
 import Journey from "../shared/models/Journey";
 
 const Journeys = () => {
@@ -35,7 +35,7 @@ const Journeys = () => {
 
   return (
     <React.Fragment>
-      <JourneysList journeys={journeys} />
+      <JourneyList journeys={journeys} />
     </React.Fragment>
   );
 };

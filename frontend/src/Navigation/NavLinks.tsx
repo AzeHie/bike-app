@@ -8,13 +8,13 @@ const NavLinks: React.FC = () => {
   return (
     <ul className="nav-links">
       <li>
-        <NavLink to="/">ALL JOURNEYS</NavLink>
-      </li>
-      <li>
-        <NavLink to="/newjourney">ADD JOURNEY</NavLink>
+        <NavLink to="/">JOURNEYS</NavLink>
       </li>
       <li>
         <NavLink to="/Stations">STATIONS</NavLink>
+      </li>
+      <li>
+        <NavLink to="/newstation">ADD STATION</NavLink>
       </li>
     </ul>
   )

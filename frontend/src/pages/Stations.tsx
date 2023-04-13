@@ -1,5 +1,5 @@
 import React from "react";
-import StationsList from "../components/StationsList";
+import StationList from "../components/StationList";
 import Station from "../shared/models/Station";
 
 const Stations = () => {
@@ -28,7 +28,7 @@ const Stations = () => {
 
   return (
     <React.Fragment>
-      <StationsList stations={stations} />
+      <StationList stations={stations} />
     </React.Fragment>
   )
 }

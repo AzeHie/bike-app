@@ -1,0 +1,41 @@
+.station-card-container {
+  width: 70%;
+  margin: auto;
+}
+
+.station-container {
+  width: 100%;
+  min-height: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  color: rgb(0, 50, 0);
+}
+
+.station-details h1 {
+  font-style: italic;
+  font-size: 3rem;
+  margin: 0;
+  padding: 0;
+}
+
+.journeys-total {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0 1rem 0;
+}
+
+.station-details p,
+.journeys-total p {
+    margin: 0;
+    padding: 0;
+    font-style: italic;
+}
+
+.stationImg {
+  width: 50%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid black;
+}

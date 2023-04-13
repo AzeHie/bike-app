@@ -1,11 +1,11 @@
 
 import { NavLink } from "react-router-dom";
-import Card from "../layout/Card";
+import Card from "../shared/layout/Card";
 import Station from "../shared/models/Station";
 
 import "./StationList.css";
 
-const StationsList: React.FC<{ stations: Station[] }> = (props) => {
+const StationList: React.FC<{ stations: Station[] }> = (props) => {
   return (
     <Card>
       <div className="header-line"> 
@@ -15,7 +15,7 @@ const StationsList: React.FC<{ stations: Station[] }> = (props) => {
         <span>City</span>
       </div>
       {props.stations.map((item) => (
-        <NavLink to={`/stations/${item.stationId}`} className="station-item-line">
+        <NavLink key={item.stationId} to={`/stations/${item.stationId}`} className="station-item-line">
           <span>{item.stationId}</span>
           <span>{item.stationName}</span>
           <span>{item.stationAddress}</span>
@@ -26,4 +26,4 @@ const StationsList: React.FC<{ stations: Station[] }> = (props) => {
   )
 };
 
-export default StationsList;
+export default StationList;
