@@ -42,4 +42,4 @@ Added template and styling for add station and add journey forms, with hard code
 14.4.2023
 Working with additional "add station" and "add journey" forms logic on frontend. Added shared Input component for inputs and shared validation for form-validations. I have never used "time" and "date" form-inputs earlier, handling that data is something new for me.
 
-Installed react-moment for date validator.
+Installed moment for date validator.
