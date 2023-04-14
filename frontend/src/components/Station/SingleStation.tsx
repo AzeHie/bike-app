@@ -1,9 +1,9 @@
-import Card from "../shared/layout/Card";
-import Station from "../shared/models/Station";
+import Card from "../../shared/layout/Card";
+import Station from "../../shared/models/Station";
 
 import "./SingleStation.css";
 
-import bikeimg from "../assets/images/citybiking.jpg";
+import bikeimg from "../../assets/images/citybiking.jpg";
 import { useNavigate } from "react-router-dom";
 
 const SingleStation: React.FC<{ station: Station }> = (props) => {

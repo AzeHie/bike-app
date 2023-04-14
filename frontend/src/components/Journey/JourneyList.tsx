@@ -1,8 +1,8 @@
 import React from "react";
-import Journey from "../shared/models/Journey";
+import Journey from "../../shared/models/Journey";
 
 import JourneyItems from "./JourneyItems";
-import Card from "../shared/layout/Card";
+import Card from "../../shared/layout/Card";
 
 // APP.CSS
 

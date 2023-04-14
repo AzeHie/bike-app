@@ -48,3 +48,9 @@
   background-color: rgb(0, 96, 0);
   color: white;
 }
+
+.generic-button:disabled {
+  background-color: gray;
+  cursor:not-allowed;
+  color: black;
+}

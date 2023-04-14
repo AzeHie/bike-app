@@ -1,5 +1,5 @@
 import React from "react";
-import StationList from "../components/StationList";
+import StationList from "../components/Station/StationList";
 import Station from "../shared/models/Station";
 
 const Stations = () => {

@@ -1,7 +1,7 @@
 
 import { NavLink } from "react-router-dom";
-import Card from "../shared/layout/Card";
-import Station from "../shared/models/Station";
+import Card from "../../shared/layout/Card";
+import Station from "../../shared/models/Station";
 
 import "./StationList.css";
 

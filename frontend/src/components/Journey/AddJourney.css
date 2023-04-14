@@ -1,0 +1,11 @@
+.add-journey__container {
+  width: 70%;
+  margin: auto;
+}
+
+.date-and-time {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border: 1px solid green;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import JourneyList from "../components/JourneyList";
+import JourneyList from "../components/Journey/JourneyList";
 import Journey from "../shared/models/Journey";
 
 const Journeys = () => {

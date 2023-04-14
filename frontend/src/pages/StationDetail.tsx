@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import SingleStation from "../components/SingleStation";
+import SingleStation from "../components/Station/SingleStation";
 import Station from "../shared/models/Station";
 
 const StationDetail = () => {
