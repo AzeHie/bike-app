@@ -21,4 +21,7 @@ Frontend: Working with journeysList. Started working with routing, navigation.
 Finished frontend routing / navigation and added app-wide styling. Working with journeysList and StationsList. I had some problems with props.children since there has been some kind of update after I last time used it - but thankfully we have stackoverflow/youtube (:D). Atleast I know how to set type for that children prop nowadays.
 
 13.4.2023
-- 
+Added template and styling for add station and add journey forms, with hard coded data for now.
+
+14.4.2023
+Working with additional "add station" and "add journey" forms logic on frontend. Added shared Input component for inputs and shared validation for form-validations. I have never used "time" and "date" form-inputs earlier, handling that data is something new for me.
