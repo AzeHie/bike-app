@@ -5,7 +5,7 @@ import Card from "../../shared/layout/Card";
 import Input from "../../shared/layout/FormElements/Input";
 
 import "./AddJourney.css";
-import { VALIDATOR_REQUIRE } from "../../shared/util/validators";
+import { VALIDATOR_DATE, VALIDATOR_REQUIRE } from "../../shared/util/validators";
 
 const formReducer = (state: any, action: any) => {
   switch (action.type) {
@@ -23,15 +23,15 @@ const formReducer = (state: any, action: any) => {
         inputs: {
           ...state.inputs,
           [action.inputId]: { value: action.value, isValid: action.isValid},
-          isValid: formIsValid
-        }
-      };
-    default:
-      return state;
+        },
+        isValid: formIsValid
+      }
+    default: return state;
   }
-};
+}
 
 const AddJourney: React.FC = () => {
+  const navigate = useNavigate();
   const [formState, dispatch] = useReducer(formReducer, {
     inputs: {
       depatureDate: {
@@ -58,21 +58,23 @@ const AddJourney: React.FC = () => {
     dispatch({type: "INPUT_CHANGE", value: value, isValid: isValid, inputId: id})
   }, []);
 
-  const navigate = useNavigate();
-
   const onCancelHandler = () => {
     navigate("/");
+  }
+
+  const onSubmitHandler = (e: React.FormEvent) => {
+    e.preventDefault();
   }
 
 
   return (
     <div className="add-journey__container">
       <Card>
-        <form>
+        <form onSubmit={onSubmitHandler}>
           <div className="date-and-time">
-            <Input id="depatureDay" label="Depature day:" type="date" validators={[VALIDATOR_REQUIRE()]} errorText="Please select the depature date." onInput={inputHandler}/>
+            <Input id="depatureDate" label="Depature day:" type="date" validators={[VALIDATOR_REQUIRE(), VALIDATOR_DATE()]} errorText="Please select the depature date." onInput={inputHandler}/>
             <Input id="depatureTime" label="Depature time:" type="time" validators={[VALIDATOR_REQUIRE()]} errorText="Please select the depature time." onInput={inputHandler}/>
-            <Input id="returnDay" label="Return day:" type="date" validators={[VALIDATOR_REQUIRE()]} errorText="Please select the return date." onInput={inputHandler}/>
+            <Input id="returnDate" label="Return day:" type="date" validators={[VALIDATOR_REQUIRE(), VALIDATOR_DATE()]} errorText="Please select the return date." onInput={inputHandler}/>
             <Input id="returnTime" label="Return time:" type="time" validators={[VALIDATOR_REQUIRE()]} errorText="Please select the return time" onInput={inputHandler}/>
           </div>
           <div className="add-station-buttons">

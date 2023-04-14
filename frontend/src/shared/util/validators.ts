@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 const VALIDATOR_TYPE_REQUIRE = 'REQUIRE';
 const VALIDATOR_TYPE_MINLENGTH = 'MINLENGTH';
 const VALIDATOR_TYPE_MAXLENGTH = 'MAXLENGTH';
@@ -22,13 +24,13 @@ export const VALIDATOR_MAX = (value: number) => ({
   type: VALIDATOR_TYPE_MAX,
   value: value
 });
-export const VALIDATOR_TIME = (value: any) => ({
-  type: VALIDATOR_TYPE_DATE,
-  value: value
+export const VALIDATOR_DATE = () => ({
+  type: VALIDATOR_TYPE_DATE
 });
 
 export const validate = (value: any, validators: any[]) => {
   let isValid = true;
+
   for (const validator of validators) {
     if (validator.type === VALIDATOR_TYPE_REQUIRE) {
       isValid = isValid && value.trim().length > 0;
@@ -46,7 +48,9 @@ export const validate = (value: any, validators: any[]) => {
       isValid = isValid && +value <= validator.value;
     }
     if (validator.type === VALIDATOR_TYPE_DATE) {
-      // how to validate date to be NOT in future?
+      let date = moment();
+      let currentDate = date.format("YYYY-MM-DD");
+      isValid = isValid && value <= currentDate ? true : false;
     }
   }
   return isValid;

@@ -5,7 +5,7 @@ import Card from "../../shared/layout/Card";
 import Input from "../../shared/layout/FormElements/Input";
 
 import "./AddStation.css";
-import { VALIDATOR_MAX, VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from "../../shared/util/validators";
+import { VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH } from "../../shared/util/validators";
 
 const formReducer = (state: any, action: any) => {
   switch (action.type) {
@@ -94,7 +94,7 @@ const AddStation: React.FC = () => {
             onInput={inputHandler}
           />
           <div className="add-station-buttons">
-            <button className="generic-button" type="submit">
+            <button className="generic-button" type="submit" disabled={!formState.isValid}>
               ADD STATION
             </button>
             <button
