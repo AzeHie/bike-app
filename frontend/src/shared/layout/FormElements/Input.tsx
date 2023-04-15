@@ -11,6 +11,11 @@ const inputReducer = (state: any, action: any) => {
         value: action.value,
         isValid: validate(action.value, action.validators),
       };
+    case "TOUCH":
+      return {
+        ...state,
+        isTouched: true
+      };
     default:
       return state;
   }
@@ -27,6 +32,7 @@ const Input: React.FC<{
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: "",
     isValid: false,
+    isTouched: false
   });
 
   const { id, onInput } = props; // pull out some pieces of props for useEffect to avoid infinity loop or too many useEffect changes
@@ -45,10 +51,17 @@ const Input: React.FC<{
     });
   };
 
+  const blurHandler = () => {
+    dispatch({
+      type: 'TOUCH'
+    });
+  };
+
+
   return (
     <div
       className={`form-control ${
-        !inputState.isValid && "form-control--invalid"
+        !inputState.isValid && inputState.isTouched && "form-control--invalid"
       }`}
     >
       <label htmlFor={props.id}>{props.label}</label>
@@ -56,9 +69,10 @@ const Input: React.FC<{
         id={props.id}
         type={props.type}
         onChange={changeHandler}
+        onBlur={blurHandler}
         value={inputState.value}
       />
-      {!inputState.isValid && <p>{props.errorText}</p>}
+      {!inputState.isValid && inputState.isTouched && <p>{props.errorText}</p>}
     </div>
   );
 };

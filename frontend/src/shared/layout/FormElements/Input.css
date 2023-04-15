@@ -10,7 +10,7 @@
 }
 
 .form-control label {
-  font-weight:bold;
+  font-weight: bolder;
   margin-bottom: 0.5rem;
   color: rgb(1, 80, 1);
 }
@@ -28,13 +28,12 @@
   border-color: rgb(1, 80, 1);
 }
 
-.form-control--invalid label,
 .form-control--invalid p {
   color: red;
+  margin: 2px 0 2px 0;
 }
 
-.form-control--invalid input,
-.form-control--invalid textarea {
+.form-control--invalid input {
   border-color: red;
   background: #ffd1d1;
 }

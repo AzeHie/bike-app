@@ -3,9 +3,42 @@
   margin: auto;
 }
 
-.date-and-time {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  border: 1px solid green;
+.depature,
+.return {
+  display: grid;
+  min-height: 18rem;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 15% 35% 50%;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgb(173, 173, 173);
+}
+
+.station {
+  grid-column: 1 / 3;
+}
+
+.depature h2,
+.return h2
+{
+  grid-column: 1 / 3;
+  font-style: italic;
+  text-align: start;
+  margin: 0 3px 0 3px;
+  color: rgb(1, 80, 1);
+}
+
+.station,
+.date,
+.time {
+  margin: 3px;
+}
+
+.distance {
+  width: 50%;
+  margin: 2rem 0 2rem 0;
+}
+
+.add-journey__buttons {
+  border-top: 1px solid rgb(173, 173, 173);
+  padding-top: 1rem;
 }
