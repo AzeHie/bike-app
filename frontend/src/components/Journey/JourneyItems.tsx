@@ -1,17 +1,17 @@
 // APP.CSS
 
 const JourneyItem: React.FC<{
-  depatureTime: string;
+  departureTime: string;
   returnTime: string;
-  depatureStation: string;
+  departureStation: string;
   returnStation: string;
   coveredDistance: number;
   duration: number;
 }> = (props) => {
   return <div className="item-line">
-    <span>{props.depatureTime}</span>
+    <span>{props.departureTime}</span>
     <span>{props.returnTime}</span>
-    <span>{props.depatureStation}</span>
+    <span>{props.departureStation}</span>
     <span>{props.returnStation}</span>
     <span>{props.coveredDistance}</span>
     <span>{props.duration}</span>

@@ -7,13 +7,14 @@ import Card from "../../shared/layout/Card";
 // APP.CSS
 
 const JourneyList: React.FC<{ journeys: Journey[] }> = (props) => {
+  console.log(props.journeys);
 
   return (
     <Card>
       <div className="header-line">
-        <span>Depature time</span>
+        <span>Departure time</span>
         <span>Return time</span>
-        <span>Depature station</span>
+        <span>Departure station</span>
         <span>Return station</span>
         <span>Covered distance (m)</span>
         <span>Duration (hh:mm)</span>
@@ -21,9 +22,9 @@ const JourneyList: React.FC<{ journeys: Journey[] }> = (props) => {
       {props.journeys.map((item) => (
         <JourneyItems
           key={item.id}
-          depatureTime={item.depatureTime}
+          departureTime={item.departureTime}
           returnTime={item.returnTime}
-          depatureStation={item.depatureStation}
+          departureStation={item.departureStation}
           returnStation={item.returnStation}
           coveredDistance={item.coveredDistance}
           duration={item.duration}

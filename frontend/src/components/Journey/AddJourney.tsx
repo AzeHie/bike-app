@@ -39,11 +39,11 @@ const AddJourney: React.FC = () => {
   const navigate = useNavigate();
   const [formState, dispatch] = useReducer(formReducer, {
     inputs: {
-      depatureDate: {
+      departureDate: {
         value: "",
         isValid: false,
       },
-      depatureTime: {
+      departureTime: {
         value: "",
         isValid: false,
       },
@@ -86,34 +86,34 @@ const AddJourney: React.FC = () => {
       <Card>
         <form onSubmit={onSubmitHandler} className="form-container">
           <div className="depature">
-            <h2>Depature:</h2>
+            <h2>Departure:</h2>
             <div className="station">
               <Input
-                id="depatureStation"
+                id="departureStation"
                 label="Station:"
                 type="text"
                 validators={[VALIDATOR_MINLENGTH(3)]}
-                errorText="Please enter the depature station."
+                errorText="Please enter the departure station."
                 onInput={inputHandler}
               />
             </div>
             <div className="date">
               <Input
-                id="depatureDate"
-                label="Depature day:"
+                id="departureDate"
+                label="Departure day:"
                 type="date"
                 validators={[VALIDATOR_REQUIRE()]}
-                errorText="Please select the depature date."
+                errorText="Please select the departure date."
                 onInput={inputHandler}
               />
             </div>
             <div className="time">
               <Input
-                id="depatureTime"
-                label="Depature time:"
+                id="departureTime"
+                label="Departure time:"
                 type="time"
                 validators={[VALIDATOR_REQUIRE()]}
-                errorText="Please select the depature time."
+                errorText="Please select the departure time."
                 onInput={inputHandler}
               />
             </div>
