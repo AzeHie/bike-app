@@ -51,3 +51,8 @@ Finished add-journey form.
 
 ----
 
+16.4.2023
+Working with journeyList and loadingspinner on the frontend.
+- Added loading spinner
+- Modified journeylist data to the wanted form (cleaner timestamp, duration from seconds to minutes, distance from meters to kilometers etc.
+
