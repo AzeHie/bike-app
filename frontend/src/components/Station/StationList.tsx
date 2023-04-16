@@ -17,9 +17,9 @@ const StationList: React.FC<{ stations: Station[] }> = (props) => {
       {props.stations.map((item) => (
         <NavLink key={item.stationId} to={`/stations/${item.stationId}`} className="station-item-line">
           <span>{item.stationId}</span>
-          <span>{item.stationName}</span>
+          <span className="station-span2">{item.stationName}</span>
           <span>{item.stationAddress}</span>
-          <span>{item.city}</span>
+          <span className="station-span2">{item.city}</span>
         </NavLink>
       ))}
     </Card>

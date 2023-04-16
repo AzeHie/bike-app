@@ -4,10 +4,10 @@ class Journey {
   returnTime: string;
   departureStation: string;
   returnStation: string;
-  coveredDistance: number;
+  coveredDistance: string;
   duration: number;
 
-  constructor(depatureTime: string, returnTime: string, depatureStation: string, returnStation: string, coveredDistance: number, duration: number, journeyId?: string) {
+  constructor(depatureTime: string, returnTime: string, depatureStation: string, returnStation: string, coveredDistance: string, duration: number, journeyId?: string) {
     this.id = journeyId;
     this.departureTime = depatureTime;
     this.returnTime = returnTime;

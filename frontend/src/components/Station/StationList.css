@@ -26,7 +26,8 @@
   transition: background-color 0.5s;
 }
 
-.station-item-line:hover {
+.station-item-line:hover,
+.station-span2:hover {
   background-color: rgb(115, 210, 115);
 }
 
@@ -35,6 +36,10 @@
   padding: 0.5rem 0 0.5rem 0;
   border-bottom: 1px solid gray;
   font-style: italic;
+  font-size: small;
 }
 
-
+.station-span2 {
+  background-color: rgb(199, 199, 199);
+  transition: background-color 0.5s;
+}

@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import JourneyList from "../components/Journey/JourneyList";
 import Journey from "../shared/models/Journey";
 import { useHttpClient } from "../shared/hooks/http-hook";
+import LoadingSpinner from "../shared/layout/LoadingSpinner";
+import moment from "moment";
 
 const Journeys: React.FC = () => {
-  const journeys = [
-    new Journey("paska", "paska", "paska", "paska", 1000, 1000),
-  ];
-
   const [loadedJourneys, setLoadedJourneys] = useState<Journey[]>([]);
   const [page, setPage] = useState<number>(0);
   const [sortOrder, setSortOrder] = useState<string>("");
@@ -16,6 +14,16 @@ const Journeys: React.FC = () => {
 
   useEffect(() => {
     const fetchJourneys = async () => {
+
+      const changeTimeStamp = (timeStamp: string) => {
+        let temp = timeStamp.split(/[T]/);
+        let tempDate = temp[0].split(/[-]/);
+        let newDate = `${tempDate[2]}.${tempDate[1]}.${tempDate[0]}`;
+        let newTime = temp[1];
+
+        return`${newDate} at ${newTime}`;
+      }
+
       try {
         let responseData;
         if (sortOrder === "" || sortBy === "") {
@@ -30,13 +38,26 @@ const Journeys: React.FC = () => {
         let tempJourneys: Journey[] = [];
 
         responseData.journeys.forEach((item: any) => {
+          // change timeStamp:
+          let modifiedDeparture = changeTimeStamp(item.Departure);
+          let modifiedReturn = changeTimeStamp(item.Return);
+          
+          // change duration:
+          let tempDuration = item.DurationInSeconds / 60;
+          let modifiedDuration = Math.floor(tempDuration);
+
+          //change distance:
+          let tempDistance = item.CoveredDistanceInMeters / 1000;
+          let modifiedDistance = (Math.round(tempDistance * 10) / 10).toFixed(1);
+
+
           let journey = new Journey(
-            item.Departure,
-            item.Return,
+            modifiedDeparture,
+            modifiedReturn,
             item.DepartureStationName,
             item.ReturnStationName,
-            item.CoveredDistanceInMeters,
-            item.DurationInSeconds,
+            modifiedDistance,
+            modifiedDuration,
             item.id
           );
           tempJourneys.push(journey);
@@ -51,7 +72,14 @@ const Journeys: React.FC = () => {
 
   return (
     <React.Fragment>
-      <JourneyList journeys={loadedJourneys} />
+      {isLoading && (
+        <div className="center">
+          <LoadingSpinner />
+        </div>
+      )}
+      {!isLoading && loadedJourneys && (
+        <JourneyList journeys={loadedJourneys} />
+      )}
     </React.Fragment>
   );
 };

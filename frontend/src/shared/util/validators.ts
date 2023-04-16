@@ -1,4 +1,4 @@
-import moment from 'moment';
+// import moment from 'moment';
 
 const VALIDATOR_TYPE_REQUIRE = 'REQUIRE';
 const VALIDATOR_TYPE_MINLENGTH = 'MINLENGTH';
