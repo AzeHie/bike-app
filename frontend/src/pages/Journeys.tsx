@@ -3,30 +3,50 @@ import JourneyList from "../components/Journey/JourneyList";
 import Journey from "../shared/models/Journey";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import LoadingSpinner from "../shared/layout/LoadingSpinner";
-import moment from "moment";
 
 const Journeys: React.FC = () => {
   const [loadedJourneys, setLoadedJourneys] = useState<Journey[]>([]);
   const [page, setPage] = useState<number>(0);
-  const [sortOrder, setSortOrder] = useState<string>("");
+  const [sortOrder, setSortOrder] = useState<number>(-1);
   const [sortBy, setSortBy] = useState<string>("");
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
+  const changeDuration = (duration: number) => {
+    let minutes = Math.floor(duration / 60);
+    let seconds = duration - minutes * 60;
+
+    let res = "";
+    res += (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    return res;
+  };
+
+  const changeDistance = (distance: number) => {
+    let res;
+
+    if (!distance) {
+      res = "Unavailable";
+      return res;
+    }
+
+    let temp = distance / 1000;
+    res = ((temp * 10) / 10).toFixed(2);
+
+    return res;
+  }
+
+  const onSortHandler =  (sortBy: string) => {
+    let tempOrder = sortOrder === -1 ? 1 : -1;
+
+    setSortBy(sortBy);
+    setSortOrder(tempOrder);
+    // triggers useEffect below
+  }
+
   useEffect(() => {
     const fetchJourneys = async () => {
-
-      const changeTimeStamp = (timeStamp: string) => {
-        let temp = timeStamp.split(/[T]/);
-        let tempDate = temp[0].split(/[-]/);
-        let newDate = `${tempDate[2]}.${tempDate[1]}.${tempDate[0]}`;
-        let newTime = temp[1];
-
-        return`${newDate} at ${newTime}`;
-      }
-
       try {
         let responseData;
-        if (sortOrder === "" || sortBy === "") {
+        if (!sortOrder || sortBy === "") {
           responseData = await sendRequest(
             `http://localhost:5000/api/journeys/?p=${page}`
           );
@@ -38,22 +58,10 @@ const Journeys: React.FC = () => {
         let tempJourneys: Journey[] = [];
 
         responseData.journeys.forEach((item: any) => {
-          // change timeStamp:
-          let modifiedDeparture = changeTimeStamp(item.Departure);
-          let modifiedReturn = changeTimeStamp(item.Return);
-          
-          // change duration:
-          let tempDuration = item.DurationInSeconds / 60;
-          let modifiedDuration = Math.floor(tempDuration);
-
-          //change distance:
-          let tempDistance = item.CoveredDistanceInMeters / 1000;
-          let modifiedDistance = (Math.round(tempDistance * 10) / 10).toFixed(1);
-
+          let modifiedDistance = changeDistance(item.CoveredDistanceInMeters);
+          let modifiedDuration = changeDuration(item.DurationInSeconds);
 
           let journey = new Journey(
-            modifiedDeparture,
-            modifiedReturn,
             item.DepartureStationName,
             item.ReturnStationName,
             modifiedDistance,
@@ -78,7 +86,7 @@ const Journeys: React.FC = () => {
         </div>
       )}
       {!isLoading && loadedJourneys && (
-        <JourneyList journeys={loadedJourneys} />
+        <JourneyList journeys={loadedJourneys} onSortHandler={onSortHandler}/>
       )}
     </React.Fragment>
   );

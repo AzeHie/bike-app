@@ -3,16 +3,12 @@ import "./JourneyItem.css";
 
 
 const JourneyItem: React.FC<{
-  departureTime: string;
-  returnTime: string;
   departureStation: string;
   returnStation: string;
   coveredDistance: string;
-  duration: number;
+  duration: string;
 }> = (props) => {
-  return <div className="item-line">
-    <span>{props.departureTime}</span>
-    <span className="journey-span">{props.returnTime}</span>
+  return <div className="journey-item-line">
     <span>{props.departureStation}</span>
     <span className="journey-span">{props.returnStation}</span>
     <span>{props.coveredDistance}</span>

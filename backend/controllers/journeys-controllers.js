@@ -3,8 +3,9 @@ const Journey = require("../models/journey");
 const HttpError = require("../models/http-error");
 
 const getJourneys = async (req, res, next) => {
+
   const sortBy = req.query.sortby;
-  const sortOrder = req.query.sortorder;
+  const sortOrder = req.query.sortOrder;
   const page = req.query.p || 0;
   const itemsPerPage = 25;
 
@@ -18,7 +19,6 @@ const getJourneys = async (req, res, next) => {
         .skip(page * itemsPerPage)
         .limit(itemsPerPage);
     } else {
-      console.log("meni elseen");
       journeys = await Journey.find()
         .limit(itemsPerPage)
         .skip(page * itemsPerPage);

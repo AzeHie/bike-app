@@ -1,4 +1,4 @@
-.header-line {
+.stations-header-line {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -8,14 +8,14 @@
   color: white;
 }
 
-.header-line span {
+.stations-header-line span {
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
   width: 100%;
   padding: 0.5rem 0 0.5rem 0;
 }
 
-.station-item-line {
+.stations-item-line {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -26,20 +26,14 @@
   transition: background-color 0.5s;
 }
 
-.station-item-line:hover,
-.station-span2:hover {
+.stations-item-line:hover {
   background-color: rgb(115, 210, 115);
 }
 
-.station-item-line span {
+.stations-item-line span {
   width: 100%;
   padding: 0.5rem 0 0.5rem 0;
   border-bottom: 1px solid gray;
   font-style: italic;
   font-size: small;
-}
-
-.station-span2 {
-  background-color: rgb(199, 199, 199);
-  transition: background-color 0.5s;
 }

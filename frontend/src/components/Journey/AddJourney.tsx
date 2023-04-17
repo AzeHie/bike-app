@@ -167,7 +167,7 @@ const AddJourney: React.FC = () => {
               type="submit"
               disabled={!formState.isValid}
             >
-              ADD STATION
+              ADD JOURNEY
             </button>
             <button
               className="generic-button"

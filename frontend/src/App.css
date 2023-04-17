@@ -1,4 +1,4 @@
-.header-line {
+/* .header-line {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -6,17 +6,17 @@
   border-left: 1px solid gray;
   background-color: rgb(0, 96, 0);
   color: white;
-}
+} */
 
-.header-line span {
+/* .header-line span {
   width: 100%;
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
   padding: 0.5rem 0 0.5rem 0;
   font-size: smaller;
-}
+} */
 
-.item-line {
+/* .item-line {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -24,15 +24,15 @@
   border-left: 1px solid gray;
   text-decoration: none;
   color: black;
-}
+} */
 
-.item-line span {
+/* .item-line span {
   width: 100%;
   padding: 0.5rem 0 0.5rem 0;
   border-bottom: 1px solid gray;
   font-style: italic;
   font-size: small;
-}
+} */
 
 .generic-button {
   background-color: rgb(46, 127, 46);

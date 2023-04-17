@@ -1,0 +1,30 @@
+.journeys-header-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-right: 1px solid gray;
+  border-left: 1px solid gray;
+  background-color: rgb(0, 96, 0);
+  color: white;
+}
+
+.journeys-header-line span {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  padding: 0.5rem 0 0.5rem 0;
+  font-size: smaller;
+}
+
+.sort-icon {
+  margin-top: 2px;
+  margin-left: 2px;
+  cursor: pointer;
+}
+
+
+
