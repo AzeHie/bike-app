@@ -56,3 +56,11 @@ Working with journeyList and loadingspinner on the frontend.
 - Added loading spinner
 - Modified journeylist data to the wanted form (cleaner timestamp, duration from seconds to minutes, distance from meters to kilometers etc)
 
+----
+17.4.2023
+Working with journeyList:
+- Added ordering per column
+- Removed return and departure timestamps from the journeylist and from the model-class (not required for this assignment). 
+- Adjusting distance calc. logic (added decimals)
+- Created own functions for both - distance and duration calculations.
+
