@@ -64,3 +64,8 @@ Working with journeyList:
 - Adjusting distance calc. logic (added decimals)
 - Created own functions for both - distance and duration calculations.
 
+----
+18.4.2023
+Working with journeyList:
+  - Added pagination
+
