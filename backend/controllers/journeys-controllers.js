@@ -10,8 +10,8 @@ const getJourneys = async (req, res, next) => {
   const itemsPerPage = 25;
 
   let sort = { [sortBy]: sortOrder };
-  console.log(sort);
   let journeys;
+  let numbOfPages;
   try {
     if (sortBy && sortOrder) {
       journeys = await Journey.find({})
@@ -23,14 +23,16 @@ const getJourneys = async (req, res, next) => {
         .limit(itemsPerPage)
         .skip(page * itemsPerPage);
     }
+    numbOfPages = await Journey.countDocuments({}, { hint: "_id_" });
+
   } catch (err) {
-    console.log(err);
     const error = new HttpError("Could not fetch data, please try again.", 500);
     return next(error);
   }
 
   res.status(200).json({
     journeys: journeys.map((journey) => journey.toObject({ getters: true })),
+    numbOfPages: numbOfPages
   });
 };
 
