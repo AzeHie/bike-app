@@ -5,7 +5,7 @@ import Card from "../../shared/layout/Card";
 import Input from "../../shared/layout/FormElements/Input";
 
 import "./AddStation.css";
-import { VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH } from "../../shared/util/validators";
+import { VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from "../../shared/util/validators";
 
 const formReducer = (state: any, action: any) => {
   switch (action.type) {
@@ -85,6 +85,14 @@ const AddStation: React.FC = () => {
             errorText="Please add a valid station address"
             onInput={inputHandler}
           />
+          <Input 
+            id="postcode"
+            label="Postal code:"
+            type="number"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please add a valid postal code"
+            onInput={inputHandler}
+            />
           <Input
             id="city"
             label="City:"

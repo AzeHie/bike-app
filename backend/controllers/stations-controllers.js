@@ -1,6 +1,7 @@
 const Station = require("../models/station");
 
 const HttpError = require("../models/http-error");
+const getCoordinates = require("../util/location");
 
 const getStations = async (req, res, next) => {
   const sortBy = req.query.sortby;
@@ -41,26 +42,33 @@ const addStation = async (req, res, next) => {
     Osoite,
   } = req.body;
 
-  let x = ""
-  let y = ""
-
-  const station = new Station({
-    ID,
-    Nimi,
-    Osoite,
-    x,
-    y
-  });
-
+  let x;
+  let y;
+  let coordinates;
   try {
-    await station.save(); 
+    coordinates = await getCoordinates(Osoite);
   } catch (err) {
-    const error = new HttpError(
-      "Could not add station, please try again.",
-      500
-    );
-    return next(error);
+    return next(err);
   }
+  console.log(coordinates);
+
+  // const station = new Station({
+  //   ID,
+  //   Nimi,
+  //   Osoite,
+  //   x,
+  //   y
+  // });
+
+  // try {
+  //   await station.save(); 
+  // } catch (err) {
+  //   const error = new HttpError(
+  //     "Could not add station, please try again.",
+  //     500
+  //   );
+  //   return next(error);
+  // }
   res.status(200).json({
     message: "New station added successfully."
   });
