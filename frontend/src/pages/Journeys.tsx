@@ -59,7 +59,7 @@ const Journeys: React.FC = () => {
           );
         } else {
           responseData = await sendRequest(
-            `http://localhost:5000/api/journeys/?p=${page}&sortby=${sortBy}&sortOrder=${sortOrder}`
+            `http://localhost:5000/api/journeys/?p=${page}&sortby=${sortBy}&sortorder=${sortOrder}`
           );
         }
         let numberOfPages = Math.round(responseData.numbOfPages / 25);

@@ -3,9 +3,8 @@ const Journey = require("../models/journey");
 const HttpError = require("../models/http-error");
 
 const getJourneys = async (req, res, next) => {
-
   const sortBy = req.query.sortby;
-  const sortOrder = req.query.sortOrder;
+  const sortOrder = req.query.sortorder;
   const page = req.query.p || 0;
   const itemsPerPage = 25;
 
@@ -60,7 +59,7 @@ const addJourney = async (req, res, next) => {
   });
 
   try {
-    const response = await journey.save();
+    await journey.save();
   } catch (err) {
     const error = new HttpError(
       "Could not add journey, please try again.",
