@@ -76,3 +76,6 @@ Working on backend:
 - Added station endpoints for to fetch stations and add new station (not ready yet though).
 - Added google geocoding API for to get coordinates for address when adding new station.
 
+on frontend:
+- Added postal code field to the add station form.
+
