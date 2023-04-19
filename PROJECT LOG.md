@@ -69,3 +69,9 @@ Working with journeyList:
 Working with journeyList:
   - Added pagination
 
+----
+19.4.2023
+Working on backend:
+- Added station endpoints to fetch stations and add new station (not ready yet though).
+- Added google geocoding API for to get coordinates for address when adding new station.
+
