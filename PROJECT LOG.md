@@ -72,6 +72,7 @@ Working with journeyList:
 ----
 19.4.2023
 Working on backend:
+- Added .env file for API_KEYS and PASSWORDS. 
 - Added station endpoints for to fetch stations and add new station (not ready yet though).
 - Added google geocoding API for to get coordinates for address when adding new station.
 
