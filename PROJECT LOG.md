@@ -79,3 +79,7 @@ Working on backend:
 on frontend:
 - Added postal code field to the add station form.
 
+----
+21.4.2023
+Working on frontend:
+- Added logic for to sending new station data to the backend. Request body kept being empty when arrived to the backend, but that was just because I didn't set headers to the request on the frontend.
