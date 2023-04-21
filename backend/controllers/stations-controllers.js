@@ -36,21 +36,17 @@ const getStations = async (req, res, next) => {
 };
 
 const addStation = async (req, res, next) => {
-  const {
-    ID,
-    Nimi,
-    Osoite,
-  } = req.body;
+  console.log(req.body);
 
-  let x;
-  let y;
-  let coordinates;
-  try {
-    coordinates = await getCoordinates(Osoite);
-  } catch (err) {
-    return next(err);
-  }
-  console.log(coordinates);
+  // let x;
+  // let y;
+  // let coordinates;
+  // try {
+  //   coordinates = await getCoordinates(Osoite);
+  // } catch (err) {
+  //   return next(err);
+  // }
+  // console.log(coordinates);
 
   // const station = new Station({
   //   ID,

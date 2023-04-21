@@ -9,7 +9,7 @@ export const useHttpClient = () => {
   const sendRequest = useCallback(async (
     url: string,
     method = 'GET',
-    body = null,
+    body: any = null,
     headers = {}
   ) => {
     setIsLoading(true);

@@ -5,26 +5,15 @@ import Station from "../shared/models/Station";
 const Stations = () => {
   const stations = [
     new Station(
-      501,
+      "id tähän",
       "Hanasaari",
       "Hanasaarenranta 1",
       "Espoo",
-      {
-        lng: 24.840319,
-        lat: 60.16582
-      }
+      86600,
+      24.840319,
+      60.16582
     ),
-    new Station(
-      502,
-      "Muu asema",
-      "Muu osoite 1",
-      "Espoo",
-      {
-        lng: 24.840319,
-        lat: 60.16582
-      }
-    )
-  ]
+  ];
 
   return (
     <React.Fragment>

@@ -8,6 +8,7 @@ const journeysRoutes = require("./routes/journeys-routes");
 const stationsRoutes = require("./routes/stations-routes");
 
 const app = express();
+
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {

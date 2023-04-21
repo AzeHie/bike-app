@@ -55,7 +55,7 @@ const Journeys: React.FC = () => {
         let responseData;
         if (!sortOrder || sortBy === "") {
           responseData = await sendRequest(
-            `http://localhost:5000/api/journeys/?p=${page}`
+            `http://localhost:5000/api/journeys/?p=${page}`,
           );
         } else {
           responseData = await sendRequest(

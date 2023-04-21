@@ -4,6 +4,6 @@ const router = express.Router();
 
 router.get("/", stationControllers.getStations);
 
-router.get("/add", stationControllers.addStation);
+router.post("/add", stationControllers.addStation);
 
 module.exports = router;

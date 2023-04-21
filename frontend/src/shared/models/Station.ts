@@ -1,18 +1,20 @@
 class Station {
-  stationId: number;
+  stationId: string;
   stationName: string;
   stationAddress: string;
   city: string;
-  coordinates: {
-    lng: number,
-    lat: number
-  };
-  constructor(id: number, name: string, address: string, city: string, coordinates: {lat: number, lng: number}) {
+  postalCode: number;
+  x: number;
+  y: number;
+
+  constructor(id: string, name: string, address: string, city: string, postalCode: number, x: number, y: number) {
     this.stationId = id;
     this.stationName = name;
     this.stationAddress = address;
     this.city = city;
-    this.coordinates = coordinates;
+    this.postalCode = postalCode;
+    this.x = x;
+    this.y = y;
   }
 }
 

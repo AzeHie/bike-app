@@ -78,7 +78,7 @@ const AddJourney: React.FC = () => {
   const onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
 
-    console.log(formState);
+    
   };
 
   return (

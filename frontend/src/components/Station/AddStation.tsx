@@ -6,6 +6,8 @@ import Input from "../../shared/layout/FormElements/Input";
 
 import "./AddStation.css";
 import { VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from "../../shared/util/validators";
+import Station from "../../shared/models/Station";
+import { useHttpClient } from "../../shared/hooks/http-hook";
 
 const formReducer = (state: any, action: any) => {
   switch (action.type) {
@@ -34,6 +36,8 @@ const formReducer = (state: any, action: any) => {
 // Coordinates and station id added on the backend
 const AddStation: React.FC = () => {
   const navigate = useNavigate();
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
   const [formState, dispatch] = useReducer(formReducer, {
     inputs: {
       name: {
@@ -46,7 +50,11 @@ const AddStation: React.FC = () => {
       },
       city: {
         value: '',
-        isValid:false
+        isValid: false
+      },
+      postalCode: {
+        value: 0,
+        isValid: false
       }
     },
     isValid: false
@@ -60,9 +68,25 @@ const AddStation: React.FC = () => {
     navigate("/stations");
   };
 
-  const onSubmitHandler = (e: React.FormEvent) => {
+  const onSubmitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formState);
+
+    try {
+      await sendRequest("http://localhost:5000/api/stations/add", 
+        'POST',
+        JSON.stringify({
+          name: formState.inputs.name,
+          address: formState.inputs.address,
+          city: formState.inputs.city,
+          postalCode: formState.inputs.postalCode
+        }),
+        {'Content-Type': 'application/json'}
+      );
+    } catch (err) {
+      console.log(err);
+    }
+
+    navigate("/stations");
   };
 
   return (
@@ -73,7 +97,7 @@ const AddStation: React.FC = () => {
             id="name"
             label="Station name:"
             type="text"
-            validators={[VALIDATOR_MINLENGTH(3), VALIDATOR_MAXLENGTH(20)]}
+            validators={[VALIDATOR_MINLENGTH(3), VALIDATOR_MAXLENGTH(50)]}
             errorText="Please add a valid station name."
             onInput={inputHandler}
           />
@@ -86,7 +110,7 @@ const AddStation: React.FC = () => {
             onInput={inputHandler}
           />
           <Input 
-            id="postcode"
+            id="postalCode"
             label="Postal code:"
             type="number"
             validators={[VALIDATOR_REQUIRE()]}
