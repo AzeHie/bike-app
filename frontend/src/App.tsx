@@ -2,12 +2,12 @@ import { Fragment } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 
 import "./App.css";
-import Journeys from "./pages/Journeys";
-import Stations from "./pages/Stations";
-import StationDetail from "./pages/StationDetail";
+import Journeys from "./pages/Journey/Journeys";
+import Stations from "./pages/Station/Stations";
+import StationDetail from "./pages/Station/StationDetail";
 import MainHeader from "./navigation/MainHeader";
-import NewStation from "./pages/NewStation";
-import NewJourney from "./pages/NewJourney";
+import NewStation from "./pages/Station/NewStation";
+import NewJourney from "./pages/Journey/NewJourney";
 
 function App() {
   let routes: any;

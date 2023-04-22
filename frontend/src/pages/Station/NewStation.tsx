@@ -1,4 +1,4 @@
-import AddStation from "../components/Station/AddStation";
+import AddStation from "../../components/Station/AddStation";
 
 const NewStation = () => {
   return (

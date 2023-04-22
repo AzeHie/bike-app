@@ -1,4 +1,4 @@
-import AddJourney from "../components/Journey/AddJourney";
+import AddJourney from "../../components/Journey/AddJourney";
 
 const NewJourney = () => {
   return (

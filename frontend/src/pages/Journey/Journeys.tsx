@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Pagination } from "@mui/material";
 
-import JourneyList from "../components/Journey/JourneyList";
-import Journey from "../shared/models/Journey";
-import { useHttpClient } from "../shared/hooks/http-hook";
-import LoadingSpinner from "../shared/layout/LoadingSpinner";
+import JourneyList from "../../components/Journey/JourneyList";
+import Journey from "../../shared/models/Journey";
+import { useHttpClient } from "../../shared/hooks/http-hook";
+import LoadingSpinner from "../../shared/layout/LoadingSpinner";
 
 const Journeys: React.FC = () => {
   const [loadedJourneys, setLoadedJourneys] = useState<Journey[]>([]);

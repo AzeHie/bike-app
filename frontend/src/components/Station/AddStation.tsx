@@ -6,7 +6,6 @@ import Input from "../../shared/layout/FormElements/Input";
 
 import "./AddStation.css";
 import { VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from "../../shared/util/validators";
-import Station from "../../shared/models/Station";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 
 const formReducer = (state: any, action: any) => {
@@ -72,7 +71,7 @@ const AddStation: React.FC = () => {
     e.preventDefault();
 
     try {
-      await sendRequest("http://localhost:5000/api/stations/add", 
+      const result = await sendRequest("http://localhost:5000/api/stations/add", 
         'POST',
         JSON.stringify({
           name: formState.inputs.name,
@@ -82,8 +81,10 @@ const AddStation: React.FC = () => {
         }),
         {'Content-Type': 'application/json'}
       );
+
+      console.log(result.message);
     } catch (err) {
-      console.log(err);
+      console.log(err); // handled in http-hook
     }
 
     navigate("/stations");

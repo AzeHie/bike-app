@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import SingleStation from "../components/Station/SingleStation";
-import Station from "../shared/models/Station";
+import SingleStation from "../../components/Station/SingleStation";
+import Station from "../../shared/models/Station";
 
 const StationDetail = () => {
   // const stationId = useParams().stationId;

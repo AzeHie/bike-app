@@ -10,6 +10,7 @@ import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
 } from "../../shared/util/validators";
+import { useHttpClient } from "../../shared/hooks/http-hook";
 
 const formReducer = (state: any, action: any) => {
   switch (action.type) {
@@ -37,13 +38,23 @@ const formReducer = (state: any, action: any) => {
 
 const AddJourney: React.FC = () => {
   const navigate = useNavigate();
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
   const [formState, dispatch] = useReducer(formReducer, {
     inputs: {
+      departureStation: {
+        value: "",
+        isValid: false,
+      },
       departureDate: {
         value: "",
         isValid: false,
       },
       departureTime: {
+        value: "",
+        isValid: false,
+      },
+      returnStation: {
         value: "",
         isValid: false,
       },
@@ -53,6 +64,10 @@ const AddJourney: React.FC = () => {
       },
       returnTime: {
         value: "",
+        isValid: false,
+      },
+      distance: {
+        value: null,
         isValid: false,
       },
     },
@@ -75,12 +90,32 @@ const AddJourney: React.FC = () => {
     navigate("/");
   };
 
-  const onSubmitHandler = (e: React.FormEvent) => {
+  const onSubmitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    
-  };
+    try {
+      const result = await sendRequest(
+        "http://localhost:5000/api/journeys/add",
+        "POST",
+        JSON.stringify({
+          departureStation: formState.inputs.departureStation,
+          departureDate: formState.inputs.departureDate,
+          departureTime: formState.inputs.departureTime,
+          returnStation: formState.inputs.returnStation,
+          returnDate: formState.inputs.returnDate,
+          returnTime: formState.inputs.returnTime,
+          distance: formState.inputs.distance,
+        }),
+        { "Content-Type": "application/json" }
+      );
+      console.log(result.message);
+    } catch (err) {
+      console.log(err); // handled in http-hook
 
+    }
+    navigate("/journeys");
+  };
+  
   return (
     <div className="add-journey__container">
       <Card>
@@ -153,7 +188,7 @@ const AddJourney: React.FC = () => {
           </div>
           <div className="distance">
             <Input
-              id="coveredDistance"
+              id="distance"
               label="Covered distance (m):"
               type="number"
               validators={[VALIDATOR_MIN(10)]}

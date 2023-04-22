@@ -36,40 +36,22 @@ const getJourneys = async (req, res, next) => {
 };
 
 const addJourney = async (req, res, next) => {
-  const {
-    Depature,
-    Return,
-    DepatureStationId,
-    DepatureStationName,
-    ReturnStationId,
-    ReturnStationName,
-    CoveredDistanceInMeters,
-    DurationInSeconds,
-  } = req.body;
+  console.log(req.body);
 
-  const journey = new Journey({
-    Depature,
-    Return,
-    DepatureStationId,
-    DepatureStationName,
-    ReturnStationId,
-    ReturnStationName,
-    CoveredDistanceInMeters,
-    DurationInSeconds,
-  });
-
-  try {
-    await journey.save();
-  } catch (err) {
-    const error = new HttpError(
-      "Could not add journey, please try again.",
-      500
-    );
-    return next(error);
-  }
+  // try {
+  //   await journey.save();
+  // } catch (err) {
+  //   const error = new HttpError(
+  //     "Could not add journey, please try again.",
+  //     500
+  //   );
+  //   return next(error);
+  // }
   res.status(200).json({
     message: "New journey added successfully.",
   });
+
+
 };
 
 exports.getJourneys = getJourneys;
