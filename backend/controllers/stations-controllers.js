@@ -31,6 +31,23 @@ const getStations = async (req, res, next) => {
 
   res.status(200).json({
     stations: stations.map((station) => station.toObject({ getters: true })),
+    numbOfPages: numbOfPages
+  });
+};
+
+const getStationById = async (req, res, next) => {
+  const stationId = req.params.sid;
+
+  let station;
+  try {
+    station = await Station.find({ _id: stationId });
+  } catch (err) {
+    const error = new HttpError("Fetching the station failed!", 500);
+    return next(error);
+  }
+
+  res.status(200).json({
+    station: station
   });
 };
 
@@ -69,11 +86,12 @@ const addStation = async (req, res, next) => {
     const error = new HttpError("Could not add the new station, please check your details and try again!", 500);
     return next(error);
   }
-  
+
   res.status(200).json({
     message: "New station added successfully.",
   });
 };
 
 exports.getStations = getStations;
+exports.getStationById = getStationById;
 exports.addStation = addStation;

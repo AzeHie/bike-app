@@ -1,6 +1,6 @@
 import React from "react";
-import { FaSort } from "react-icons/fa";
 import Tooltip from "@mui/material/Tooltip";
+import { FaSort } from "react-icons/fa";
 import { Pagination } from "@mui/material";
 
 import Journey from "../../shared/models/Journey";
@@ -16,11 +16,12 @@ const JourneyList: React.FC<{
   sortHandler: (sortBy: string) => void;
   pageChangeHandler: (newPage: number) => void;
 }> = (props) => {
+
   const onSortItems = (sortBy: string) => {
     props.sortHandler(sortBy);
   };
 
-  const onPageChange = (event: React.ChangeEvent<unknown>, newPage: number) => {
+  const onPageChange = (e: React.ChangeEvent<unknown>, newPage: number) => {
     props.pageChangeHandler(newPage);
   };
 

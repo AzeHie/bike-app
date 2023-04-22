@@ -111,7 +111,6 @@ const AddJourney: React.FC = () => {
       console.log(result.message);
     } catch (err) {
       console.log(err); // handled in http-hook
-
     }
     navigate("/journeys");
   };
