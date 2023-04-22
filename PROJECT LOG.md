@@ -83,3 +83,11 @@ on frontend:
 21.4.2023
 Working on frontend:
 - Added logic for to sending new station data to the backend. Request body kept being empty when arrived to the backend, but that was just because I didn't set headers to the request on the frontend.
+
+----
+22.4.2023
+Working on stationList on the frontend AND on backend
+- Frontend: Added logic to fetch stationList from the backend/database. 
+- Backend: Added / finished routes and controllers for getStations and getStationById. 
+
+Pretty much similar solutions as with journeylist earlier.
