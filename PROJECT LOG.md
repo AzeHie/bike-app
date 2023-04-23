@@ -91,3 +91,10 @@ Working on stationList on the frontend AND on backend
 - Backend: Added / finished routes and controllers for getStations and getStationById. 
 
 Pretty much similar solutions as with journeylist earlier.
+
+----
+
+23.4.2023
+Backend & Frontend: Working on Single station view / component. Added logic to fetch data from the backend and render it on the single station view. Had some problems with different data types between database and frontend, but decided to modify the data in the backend before sending it to the frontend.
+
+Frontend: Added generic Modal component, backdrop component (for modal) and generic errorModal component (which uses Modal component). Modal and backdrop are using react portals.
