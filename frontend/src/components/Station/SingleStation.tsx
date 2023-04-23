@@ -1,13 +1,16 @@
+import { useNavigate } from "react-router-dom";
+
 import Card from "../../shared/layout/Card";
 import Station from "../../shared/models/Station";
+import bikeimg from "../../assets/images/citybiking.jpg";
 
 import "./SingleStation.css";
 
-import bikeimg from "../../assets/images/citybiking.jpg";
-import { useNavigate } from "react-router-dom";
 
 const SingleStation: React.FC<{ station: Station }> = (props) => {
   const navigate = useNavigate();
+
+  // replace image with map later
 
   const backToListHandler = () => {
     navigate("/stations");
@@ -27,7 +30,6 @@ const SingleStation: React.FC<{ station: Station }> = (props) => {
             <p>Journeys ended on the station: 33</p>
           </div>
           <div>
-            <button className="generic-button">VIEW ON MAP</button>
             <button className="generic-button" onClick={backToListHandler}>BACK TO STATION LIST</button>
           </div>
         </div>

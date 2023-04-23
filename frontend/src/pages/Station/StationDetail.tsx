@@ -8,11 +8,8 @@ import LoadingSpinner from "../../shared/layout/LoadingSpinner";
 
 const StationDetail: React.FC = () => {
   const stationId = useParams().stationId;
-  const [loadedStation, setLoadedStation] = useState<any>();
+  const [loadedStation, setLoadedStation] = useState<Station>();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-
-  console.log(stationId);
-  console.log("station rendered");
 
   useEffect(() => {
     const fetchStation = async () => {
