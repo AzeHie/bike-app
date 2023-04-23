@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Pagination } from "@mui/material";
 
 import JourneyList from "../../components/Journey/JourneyList";
 import Journey from "../../shared/models/Journey";

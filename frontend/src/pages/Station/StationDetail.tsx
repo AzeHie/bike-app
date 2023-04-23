@@ -1,15 +1,41 @@
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
 import SingleStation from "../../components/Station/SingleStation";
 import Station from "../../shared/models/Station";
+import { useHttpClient } from "../../shared/hooks/http-hook";
+import LoadingSpinner from "../../shared/layout/LoadingSpinner";
 
-const StationDetail = () => {
-  // const stationId = useParams().stationId;
+const StationDetail: React.FC = () => {
+  const stationId = useParams().stationId;
+  const [loadedStation, setLoadedStation] = useState<any>();
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
-    // get station by id from the backend here..
+  console.log(stationId);
+  console.log("station rendered");
 
-  const station = new Station("501", "Hanasaari", "Hanasaarenranta 1", "Espoo", 86600, 24.840319, 60.16582);
+  useEffect(() => {
+    const fetchStation = async () => {
+      try {
+        const responseData = await sendRequest(
+          `http://localhost:5000/api/stations/${stationId}`
+        );
+        setLoadedStation(responseData.station);
+      } catch (err) {}
+    };
+    fetchStation();
+  }, [sendRequest, stationId]);
 
-  return <SingleStation station={station} />;
+  return (
+    <React.Fragment>
+    {isLoading && (
+      <div className="center">
+        <LoadingSpinner />
+      </div>
+    )}
+    {!isLoading && loadedStation && <SingleStation station={loadedStation} />};
+  </React.Fragment>
+  )
 };
 
 export default StationDetail;

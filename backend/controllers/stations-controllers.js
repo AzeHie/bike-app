@@ -46,8 +46,20 @@ const getStationById = async (req, res, next) => {
     return next(error);
   }
 
+  let modifiedStation;
+
+  modifiedStation = {
+    stationId: station[0]._id,
+    stationName: station[0].Nimi,
+    stationAddress: station[0].Osoite,
+    city: station[0].Kaupunki,
+    postalCode: station[0].PostalCode,
+    x: station[0].x,
+    y: station[0].y
+  };
+
   res.status(200).json({
-    station: station
+    station: modifiedStation
   });
 };
 
