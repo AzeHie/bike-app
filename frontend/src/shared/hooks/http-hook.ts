@@ -6,50 +6,54 @@ export const useHttpClient = () => {
 
   const activeHttpRequests = useRef<any>([]);
 
-  const sendRequest = useCallback(async (
-    url: string,
-    method = 'GET',
-    body: any = null,
-    headers = {}
-  ) => {
-    setIsLoading(true);
-    
-    const httpAbortController = new AbortController(); // canceling ongoing request if user left the page before it was completed
-    activeHttpRequests.current.push(httpAbortController);
+  const sendRequest = useCallback(
+    async (url: string, method = "GET", body: any = null, headers = {}) => {
+      setIsLoading(true);
 
-    try {
-      const response = await fetch(url, {
-        method: method,
-        body: body,
-        headers: headers,
-        signal: httpAbortController.signal 
-      });
+      const httpAbortController = new AbortController(); // canceling ongoing request if user left the page before it was completed
+      activeHttpRequests.current.push(httpAbortController);
 
-      const responseData = await response.json();
+      try {
+        const response = await fetch(url, {
+          method: method,
+          body: body,
+          headers: headers,
+          signal: httpAbortController.signal,
+        });
 
-      // remove abortcontroller which belongs to the completed request
-      activeHttpRequests.current = activeHttpRequests.current.filter((reqCtrl: any) => reqCtrl !== httpAbortController);
-    
-    if(!response.ok) {
-      throw new Error(responseData.message);
-    }
-    setIsLoading(false);
-    return responseData;
-    } catch (err: any) {
-      setError(err.message);
-      setIsLoading(false);
+        const responseData = await response.json();
 
-    }
-  }, []);
+        // remove abortcontroller which belongs to the completed request
+        activeHttpRequests.current = activeHttpRequests.current.filter(
+          (reqCtrl: any) => reqCtrl !== httpAbortController
+        );
 
-  const clearError =  () => {
+        if (!response.ok) {
+          throw new Error(responseData.message);
+        }
+        setIsLoading(false);
+        return responseData;
+      } catch (err: any) {
+        if (err.name !== "AbortError") {
+          setError(err.message);
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    []
+  );
+
+  const clearError = () => {
     setError(null);
   };
 
-  useEffect(() => { 
+  useEffect(() => {
     return () => {
-      activeHttpRequests.current.forEach((AbortController: any) => AbortController.abort());
-    }
+      activeHttpRequests.current.forEach((AbortController: any) =>
+        AbortController.abort()
+      );
+    };
   }, []);
 
   return { isLoading, error, sendRequest, clearError };

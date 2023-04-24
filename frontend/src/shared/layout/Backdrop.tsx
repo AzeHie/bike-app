@@ -1,5 +1,7 @@
 import ReactDOM from "react-dom";
 
+import "./Backdrop.css";
+
 const Backdrop: React.FC<{onClick: () => void}> = (props) => {
   
   return ReactDOM.createPortal(

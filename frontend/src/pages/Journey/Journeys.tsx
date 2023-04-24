@@ -4,6 +4,7 @@ import JourneyList from "../../components/Journey/JourneyList";
 import Journey from "../../shared/models/Journey";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import LoadingSpinner from "../../shared/layout/LoadingSpinner";
+import ErrorModal from "../../shared/layout/ErrorModal";
 
 const Journeys: React.FC = () => {
   const [loadedJourneys, setLoadedJourneys] = useState<Journey[]>([]);
@@ -89,6 +90,7 @@ const Journeys: React.FC = () => {
 
   return (
     <React.Fragment>
+      <ErrorModal error={error} onClear={clearError} /> 
       {isLoading && (
         <div className="center">
           <LoadingSpinner />

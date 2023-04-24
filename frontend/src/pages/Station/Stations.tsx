@@ -3,6 +3,7 @@ import StationList from "../../components/Station/StationList";
 import Station from "../../shared/models/Station";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import LoadingSpinner from "../../shared/layout/LoadingSpinner";
+import ErrorModal from "../../shared/layout/ErrorModal";
 
 const Stations: React.FC = () => {
   const [loadedStations, setLoadedStations] = useState<Station[]>([]);
@@ -71,6 +72,7 @@ const Stations: React.FC = () => {
 
   return (
     <React.Fragment>
+      <ErrorModal error={error} onClear={clearError}/>
       {isLoading && (
         <div className="center">
           <LoadingSpinner />

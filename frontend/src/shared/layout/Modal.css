@@ -1,7 +1,7 @@
 .modal {
   z-index: 100;
   position: fixed;
-  top: 22vh;
+  top: 28vh;
   left: 10%;
   width: 80%;
   background:  white;
@@ -12,7 +12,7 @@
 .modal-header {
   width: 100%;
   padding: 1rem 0.5rem;
-  background: rgb(0, 70, 0);
+  background: rgb(46, 127, 46);
   color: white;
 }
 
@@ -51,4 +51,9 @@
   transform: translateY(-10rem);
   opacity: 0;
   transition: all 200ms;
+}
+
+.modal-button {
+  text-align: end;
+  margin: 0 0.5rem 0.5rem 0;
 }
