@@ -98,3 +98,13 @@ Pretty much similar solutions as with journeylist earlier.
 Backend & Frontend: Working on Single station view / component. Added logic to fetch data from the backend and render it on the single station view. Had some problems with different data types between database and frontend, but decided to modify the data in the backend before sending it to the frontend.
 
 Frontend: Added generic Modal component, backdrop component (for modal) and generic errorModal component (which uses Modal component). Modal and backdrop are using react portals.
+
+----
+
+24.4.2023
+Frontend: 
+- Finished with error modal and started using in many different comoponents. Backdrop was not working but just because I forgot to import css-file in it. 
+- Fixed an issue with abort conroller in http-hook. "User aborted the request" - error were thrown, it's something around react's strict mode which mounts and unmounts functional components using hooks twice when they are first rendered to the screen.. Or something like that (thanks to google once again)
+
+
+ this is a React specific issue around React's strict mode (which wraps our application in the index.js), which mounts and unmount's functional components (using hooks) twice when they are first rendered to the screen
