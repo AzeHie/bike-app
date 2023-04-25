@@ -106,9 +106,6 @@ Frontend:
 - Finished with error modal and started using in many different comoponents. Backdrop was not working but just because I forgot to import css-file in it. 
 - Fixed an issue with abort conroller in http-hook. "User aborted the request" - error were thrown, it's something around react's strict mode which mounts and unmounts functional components using hooks twice when they are first rendered to the screen.. Or something like that (thanks to google once again)
 
-
- this is a React specific issue around React's strict mode (which wraps our application in the index.js), which mounts and unmount's functional components (using hooks) twice when they are first rendered to the screen
-
 ----
 
 25.4.2023
