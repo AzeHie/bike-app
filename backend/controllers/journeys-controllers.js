@@ -23,7 +23,6 @@ const getJourneys = async (req, res, next) => {
         .skip(page * itemsPerPage);
     }
     numbOfPages = await Journey.countDocuments({}, { hint: "_id_" });
-
   } catch (err) {
     const error = new HttpError("Could not fetch data, please try again.", 500);
     return next(error);
@@ -31,27 +30,41 @@ const getJourneys = async (req, res, next) => {
 
   res.status(200).json({
     journeys: journeys.map((journey) => journey.toObject({ getters: true })),
-    numbOfPages: numbOfPages
+    numbOfPages: numbOfPages,
   });
 };
 
 const addJourney = async (req, res, next) => {
-  console.log(req.body);
+  if (req.body.departureTime > req.body.returnTime) {
+      const error = new HttpError(
+        "Departure time can not be after the return time",
+        403
+      );
+      return next(error);
+  }
 
-  // try {
-  //   await journey.save();
-  // } catch (err) {
-  //   const error = new HttpError(
-  //     "Could not add journey, please try again.",
-  //     500
-  //   );
-  //   return next(error);
-  // }
+  const journey = new Journey({
+    Departure: req.body.departureTime,
+    Return: req.body.returnTime,
+    DepatureStationName: req.body.departureStation,
+    ReturnStationName: req.body.returnStation,
+    CoveredDistanceInMeters: req.body.distance,
+    DurationInSeconds: req.body.duration
+  });
+
+  try {
+    await journey.save();
+  } catch (err) {
+    const error = new HttpError(
+      "Could not add journey, please try again.",
+      500
+    );
+    return next(error);
+  };
+
   res.status(200).json({
     message: "New journey added successfully.",
   });
-
-
 };
 
 exports.getJourneys = getJourneys;

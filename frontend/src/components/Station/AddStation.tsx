@@ -85,7 +85,7 @@ const AddStation: React.FC = () => {
     e.preventDefault();
 
     try {
-      const result = await sendRequest(
+      await sendRequest(
         "http://localhost:5000/api/stations/add",
         "POST",
         JSON.stringify({
@@ -97,7 +97,6 @@ const AddStation: React.FC = () => {
         { "Content-Type": "application/json" }
       );
 
-      console.log(result.message);
     } catch (err) {
       console.log(err); // handled in http-hook
     }

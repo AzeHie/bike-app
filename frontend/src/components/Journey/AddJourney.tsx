@@ -12,6 +12,7 @@ import { useHttpClient } from "../../shared/hooks/http-hook";
 import ErrorModal from "../../shared/layout/ErrorModal";
 import "./AddJourney.css";
 import LoadingSpinner from "../../shared/layout/LoadingSpinner";
+import { Console } from "console";
 
 const formReducer = (state: any, action: any) => {
   switch (action.type) {
@@ -83,40 +84,49 @@ const AddJourney: React.FC = () => {
         isValid: isValid,
         inputId: id,
       });
-    },
-    []
-  );
+    },[]);
 
-  const onCancelHandler = () => {
-    navigate("/");
-  };
+    const calcDuration = (departureTime: string, returnTime: string) => {
+      let departureInSec = new Date(departureTime).getTime() / 1000;
+      let returnInSec = new Date(returnTime).getTime() / 1000;
 
+      return returnInSec - departureInSec;
+    };
+  
   const onSubmitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    let modifiedDeparture = new Date(formState.inputs.departureDate.value + ' ' + formState.inputs.departureTime.value).toISOString().split('.')[0];
+    let modifiedReturn = new Date(formState.inputs.returnDate.value + ' ' + formState.inputs.returnTime.value).toISOString().split('.')[0];
+
+    let durationInSeconds = calcDuration(modifiedDeparture, modifiedReturn);
 
     try {
       await sendRequest(
         "http://localhost:5000/api/journeys/add",
         "POST",
         JSON.stringify({
-          departureStation: formState.inputs.departureStation,
-          departureDate: formState.inputs.departureDate,
-          departureTime: formState.inputs.departureTime,
-          returnStation: formState.inputs.returnStation,
-          returnDate: formState.inputs.returnDate,
-          returnTime: formState.inputs.returnTime,
-          distance: formState.inputs.distance,
+          departureStation: formState.inputs.departureStation.value,
+          departureTime: modifiedDeparture,
+          returnStation: formState.inputs.returnStation.value,
+          returnTime: modifiedReturn,
+          distance: formState.inputs.distance.value,
+          duration: durationInSeconds
         }),
         { "Content-Type": "application/json" }
-      );
-    } catch (err) {
-      // handled in http-hook
-    }
-    navigate("/journeys");
-  };
+        );
+      } catch (err) {
+        // handled in http-hook
+      }
+      navigate("/journeys");
+    };
 
-  return (
-    <React.Fragment>
+    const onCancelHandler = () => {
+      navigate("/");
+    };
+    
+    return (
+      <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <div className="add-journey__container">
         <Card>
