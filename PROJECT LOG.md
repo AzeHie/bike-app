@@ -108,3 +108,9 @@ Frontend:
 
 
  this is a React specific issue around React's strict mode (which wraps our application in the index.js), which mounts and unmount's functional components (using hooks) twice when they are first rendered to the screen
+
+----
+
+25.4.2023
+Frontend & Backend:
+- Working with add journey (almost finished, except some validation on the backend and info for the user about the successfully operation.
