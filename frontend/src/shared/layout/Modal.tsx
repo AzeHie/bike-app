@@ -29,7 +29,7 @@ const ModalOverlay: React.FC<
 };
 
 const Modal: React.FC<
-  PropsWithChildren<{ show: any; onCancel: () => void; header: string }>
+  PropsWithChildren<{ show: boolean; onCancel: () => void; header: string }>
 > = (props) => {
   return (
     <React.Fragment>

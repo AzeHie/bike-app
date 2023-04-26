@@ -64,16 +64,18 @@ const getStationById = async (req, res, next) => {
 };
 
 const addStation = async (req, res, next) => {
+  console.log(req.body);
   let coordinates;
   let x;
   let y;
 
   let address =
-    req.body.address.value +
-    "," +
-    req.body.postalCode.value +
+    req.body.address +
+    ", " +
+    req.body.postalCode +
     " " +
-    req.body.city.value;
+    req.body.city;
+
   try {
     coordinates = await getCoordinates(address);
   } catch (err) {
@@ -85,8 +87,9 @@ const addStation = async (req, res, next) => {
 
   const station = new Station(
     {
-      Nimi: req.body.name.value,
-      Osoite: req.body.address.value,
+      Nimi: req.body.name,
+      Osoite: req.body.address,
+      Kaupunki: req.body.city,
       x: x,
       y: y
     }

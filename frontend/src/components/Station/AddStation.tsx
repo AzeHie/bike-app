@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer } from "react";
+import React, { useCallback, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Card from "../../shared/layout/Card";
@@ -6,13 +6,13 @@ import Input from "../../shared/layout/FormElements/Input";
 import {
   VALIDATOR_MAXLENGTH,
   VALIDATOR_MINLENGTH,
-  VALIDATOR_REQUIRE,
 } from "../../shared/util/validators";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import ErrorModal from "../../shared/layout/ErrorModal";
+import LoadingSpinner from "../../shared/layout/LoadingSpinner";
+import Modal from "../../shared/layout/Modal";
 
 import "./AddStation.css";
-import LoadingSpinner from "../../shared/layout/LoadingSpinner";
 
 const formReducer = (state: any, action: any) => {
   switch (action.type) {
@@ -41,6 +41,8 @@ const formReducer = (state: any, action: any) => {
 // Coordinates and station id added on the backend
 const AddStation: React.FC = () => {
   const navigate = useNavigate();
+  const [reqOkModal, setReqOkModal] = useState<boolean>(false);
+  const [reqOkMessage, setReqOkMessage] = useState<string>("");
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const [formState, dispatch] = useReducer(formReducer, {
@@ -85,28 +87,35 @@ const AddStation: React.FC = () => {
     e.preventDefault();
 
     try {
-      await sendRequest(
+      const response = await sendRequest(
         "http://localhost:5000/api/stations/add",
         "POST",
         JSON.stringify({
-          name: formState.inputs.name,
-          address: formState.inputs.address,
-          city: formState.inputs.city,
-          postalCode: formState.inputs.postalCode,
+          name: formState.inputs.name.value,
+          address: formState.inputs.address.value,
+          city: formState.inputs.city.value,
+          postalCode: formState.inputs.postalCode.value,
         }),
         { "Content-Type": "application/json" }
       );
 
+      setReqOkMessage(response.message);
+      setReqOkModal(true);
     } catch (err) {
-      console.log(err); // handled in http-hook
+      // handled in http-hook
     }
+  };
 
+  const closeModal = () => {
+    setReqOkModal(false);
+    setReqOkMessage("");
     navigate("/stations");
   };
 
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
+      <Modal show={reqOkModal} onCancel={closeModal} header="New station added!"><p>{reqOkMessage}</p></Modal>
       <div className="add-station-container">
         <Card>
           {isLoading && <LoadingSpinner />}
@@ -132,7 +141,7 @@ const AddStation: React.FC = () => {
                 id="postalCode"
                 label="Postal code:"
                 type="number"
-                validators={[VALIDATOR_REQUIRE()]}
+                validators={[VALIDATOR_MINLENGTH(5), VALIDATOR_MAXLENGTH(5)]}
                 errorText="Please add a valid postal code"
                 onInput={inputHandler}
               />

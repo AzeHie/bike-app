@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer } from "react";
+import React, { useCallback, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Card from "../../shared/layout/Card";
@@ -12,7 +12,7 @@ import { useHttpClient } from "../../shared/hooks/http-hook";
 import ErrorModal from "../../shared/layout/ErrorModal";
 import "./AddJourney.css";
 import LoadingSpinner from "../../shared/layout/LoadingSpinner";
-import { Console } from "console";
+import Modal from "../../shared/layout/Modal";
 
 const formReducer = (state: any, action: any) => {
   switch (action.type) {
@@ -40,6 +40,8 @@ const formReducer = (state: any, action: any) => {
 
 const AddJourney: React.FC = () => {
   const navigate = useNavigate();
+  const [reqOkModal, setReqOkModal] = useState<boolean>(false);
+  const [reqOkMessage, setReqOkMessage] = useState<string>("");
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const [formState, dispatch] = useReducer(formReducer, {
@@ -102,7 +104,7 @@ const AddJourney: React.FC = () => {
     let durationInSeconds = calcDuration(modifiedDeparture, modifiedReturn);
 
     try {
-      await sendRequest(
+      const response = await sendRequest(
         "http://localhost:5000/api/journeys/add",
         "POST",
         JSON.stringify({
@@ -115,19 +117,29 @@ const AddJourney: React.FC = () => {
         }),
         { "Content-Type": "application/json" }
         );
+
+        setReqOkMessage(response.message);
+        setReqOkModal(true);
       } catch (err) {
         // handled in http-hook
       }
-      navigate("/journeys");
     };
 
     const onCancelHandler = () => {
       navigate("/");
     };
+
+    const closeModal = () => {
+      setReqOkModal(false);
+      setReqOkMessage("");
+      navigate("/journeys");
+    };
+  
     
     return (
       <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
+      <Modal show={reqOkModal} onCancel={closeModal} header="New journey added!"><p>{reqOkMessage}</p></Modal>
       <div className="add-journey__container">
         <Card>
           {isLoading && <LoadingSpinner />}
@@ -226,7 +238,7 @@ const AddJourney: React.FC = () => {
                 </button>
               </div>
             </form>
-          )};
+          )}
         </Card>
       </div>
     </React.Fragment>

@@ -6,10 +6,10 @@
 .depature,
 .return {
   display: grid;
-  min-height: 18rem;
+  min-height: 15rem;
   grid-template-columns: 50% 50%;
   grid-template-rows: 15% 35% 50%;
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
   border-bottom: 1px solid rgb(173, 173, 173);
 }
 
@@ -35,7 +35,7 @@
 
 .distance {
   width: 50%;
-  margin: 2rem 0 2rem 0;
+  margin: 1rem 0 1rem 0;
 }
 
 .add-journey__buttons {
