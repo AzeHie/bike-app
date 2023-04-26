@@ -13,6 +13,6 @@ PROJECT LOG:
 
 IMPORTANT NOTE ABOUT THE DATA SETS FOR THIS ASSIGNMENT:
   - I imported only one of three data sets to mongoDB, because it's free up to 512mb and there was lot of more data in those sets.
-  - There was lot of documents without distance field at all. Shown as "Unavailable" on journyeslist.
-  - There was also lot of documents multiple times, I didn't do anything about it
+  - Deleted a lot of documents without coveredDistance field.
+  - There was also lot of documents multiple times, I didn't do anything about it.
 
