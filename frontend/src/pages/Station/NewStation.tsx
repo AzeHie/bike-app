@@ -1,9 +1,7 @@
 import AddStation from "../../components/Station/AddStation";
 
 const NewStation = () => {
-  return (
-    <AddStation />
-  )
-}
+  return <AddStation />;
+};
 
 export default NewStation;

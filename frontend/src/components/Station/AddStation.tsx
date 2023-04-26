@@ -115,7 +115,13 @@ const AddStation: React.FC = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      <Modal show={reqOkModal} onCancel={closeModal} header="New station added!"><p>{reqOkMessage}</p></Modal>
+      <Modal
+        show={reqOkModal}
+        onCancel={closeModal}
+        header="New station added!"
+      >
+        <p>{reqOkMessage}</p>
+      </Modal>
       <div className="add-station-container">
         <Card>
           {isLoading && <LoadingSpinner />}

@@ -19,7 +19,12 @@ const Journeys: React.FC = () => {
     let minutes = Math.floor(duration / 60);
     let seconds = duration - minutes * 60;
 
-    res += (minutes < 10 ? "0" : "") + minutes + ":" +(seconds < 10 ? "0" : "") + seconds;
+    res +=
+      (minutes < 10 ? "0" : "") +
+      minutes +
+      ":" +
+      (seconds < 10 ? "0" : "") +
+      seconds;
     return res;
   };
 
@@ -55,7 +60,7 @@ const Journeys: React.FC = () => {
         let responseData;
         if (!sortOrder || sortBy === "") {
           responseData = await sendRequest(
-            `http://localhost:5000/api/journeys/?p=${page}`,
+            `http://localhost:5000/api/journeys/?p=${page}`
           );
         } else {
           responseData = await sendRequest(
@@ -90,7 +95,7 @@ const Journeys: React.FC = () => {
 
   return (
     <React.Fragment>
-      <ErrorModal error={error} onClear={clearError} /> 
+      <ErrorModal error={error} onClear={clearError} />
       {isLoading && (
         <div className="center">
           <LoadingSpinner />

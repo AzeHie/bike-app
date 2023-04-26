@@ -1,4 +1,5 @@
 const Station = require("../models/station");
+const Journey = require("../models/journey");
 
 const HttpError = require("../models/http-error");
 const getCoordinates = require("../util/location");
@@ -39,8 +40,13 @@ const getStationById = async (req, res, next) => {
   const stationId = req.params.sid;
 
   let station;
+  let startedJourneys;
+  let endedJourneys;
+
   try {
     station = await Station.find({ _id: stationId });
+    startedJourneys = await Journey.countDocuments({ DepartureStationName: station[0].Nimi});
+    endedJourneys = await Journey.countDocuments({ ReturnStationName: station[0].Nimi });
   } catch (err) {
     const error = new HttpError("Fetching the station failed!", 500);
     return next(error);
@@ -58,13 +64,17 @@ const getStationById = async (req, res, next) => {
     y: station[0].y
   };
 
+  console.log(startedJourneys);
+  console.log(endedJourneys);
+
   res.status(200).json({
-    station: modifiedStation
+    station: modifiedStation,
+    startedJourneys: startedJourneys,
+    endedJourneys: endedJourneys
   });
 };
 
 const addStation = async (req, res, next) => {
-  console.log(req.body);
   let coordinates;
   let x;
   let y;

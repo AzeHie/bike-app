@@ -6,10 +6,13 @@ import Station from "../../shared/models/Station";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import LoadingSpinner from "../../shared/layout/LoadingSpinner";
 import ErrorModal from "../../shared/layout/ErrorModal";
+import Card from "../../shared/layout/Card";
 
 const StationDetail: React.FC = () => {
   const stationId = useParams().stationId;
   const [loadedStation, setLoadedStation] = useState<Station>();
+  const [startedJourneys, setStartedJourneys] = useState<number>(0);
+  const [endedJourneys, setEndedJourneys] = useState<number>(0);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   useEffect(() => {
@@ -19,6 +22,8 @@ const StationDetail: React.FC = () => {
           `http://localhost:5000/api/stations/${stationId}`
         );
         setLoadedStation(responseData.station);
+        setStartedJourneys(responseData.startedJourneys);
+        setEndedJourneys(responseData.endedJourneys);
       } catch (err) {}
     };
     fetchStation();
@@ -26,15 +31,25 @@ const StationDetail: React.FC = () => {
 
   return (
     <React.Fragment>
-      <ErrorModal error={error} onClear={clearError} />
-    {isLoading && (
-      <div className="center">
-        <LoadingSpinner />
+      <div className="station-card-container">
+        <Card>
+          <ErrorModal error={error} onClear={clearError} />
+          {isLoading && (
+            <div className="center">
+              <LoadingSpinner />
+            </div>
+          )}
+          {!isLoading && loadedStation && (
+            <SingleStation
+              station={loadedStation}
+              startedJourneys={startedJourneys}
+              endedJourneys={endedJourneys}
+            />
+          )}
+        </Card>
       </div>
-    )}
-    {!isLoading && loadedStation && <SingleStation station={loadedStation} />};
-  </React.Fragment>
-  )
+    </React.Fragment>
+  );
 };
 
 export default StationDetail;

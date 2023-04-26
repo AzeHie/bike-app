@@ -86,20 +86,34 @@ const AddJourney: React.FC = () => {
         isValid: isValid,
         inputId: id,
       });
-    },[]);
+    },
+    []
+  );
 
-    const calcDuration = (departureTime: string, returnTime: string) => {
-      let departureInSec = new Date(departureTime).getTime() / 1000;
-      let returnInSec = new Date(returnTime).getTime() / 1000;
+  const calcDuration = (departureTime: string, returnTime: string) => {
+    let departureInSec = new Date(departureTime).getTime() / 1000;
+    let returnInSec = new Date(returnTime).getTime() / 1000;
 
-      return returnInSec - departureInSec;
-    };
-  
+    return returnInSec - departureInSec;
+  };
+
   const onSubmitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    let modifiedDeparture = new Date(formState.inputs.departureDate.value + ' ' + formState.inputs.departureTime.value).toISOString().split('.')[0];
-    let modifiedReturn = new Date(formState.inputs.returnDate.value + ' ' + formState.inputs.returnTime.value).toISOString().split('.')[0];
+    let modifiedDeparture = new Date(
+      formState.inputs.departureDate.value +
+        " " +
+        formState.inputs.departureTime.value
+    )
+      .toISOString()
+      .split(".")[0];
+    let modifiedReturn = new Date(
+      formState.inputs.returnDate.value +
+        " " +
+        formState.inputs.returnTime.value
+    )
+      .toISOString()
+      .split(".")[0];
 
     let durationInSeconds = calcDuration(modifiedDeparture, modifiedReturn);
 
@@ -113,33 +127,38 @@ const AddJourney: React.FC = () => {
           returnStation: formState.inputs.returnStation.value,
           returnTime: modifiedReturn,
           distance: formState.inputs.distance.value,
-          duration: durationInSeconds
+          duration: durationInSeconds,
         }),
         { "Content-Type": "application/json" }
-        );
+      );
 
-        setReqOkMessage(response.message);
-        setReqOkModal(true);
-      } catch (err) {
-        // handled in http-hook
-      }
-    };
+      setReqOkMessage(response.message);
+      setReqOkModal(true);
+    } catch (err) {
+      // handled in http-hook
+    }
+  };
 
-    const onCancelHandler = () => {
-      navigate("/");
-    };
+  const onCancelHandler = () => {
+    navigate("/");
+  };
 
-    const closeModal = () => {
-      setReqOkModal(false);
-      setReqOkMessage("");
-      navigate("/journeys");
-    };
-  
-    
-    return (
-      <React.Fragment>
+  const closeModal = () => {
+    setReqOkModal(false);
+    setReqOkMessage("");
+    navigate("/journeys");
+  };
+
+  return (
+    <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      <Modal show={reqOkModal} onCancel={closeModal} header="New journey added!"><p>{reqOkMessage}</p></Modal>
+      <Modal
+        show={reqOkModal}
+        onCancel={closeModal}
+        header="New journey added!"
+      >
+        <p>{reqOkMessage}</p>
+      </Modal>
       <div className="add-journey__container">
         <Card>
           {isLoading && <LoadingSpinner />}

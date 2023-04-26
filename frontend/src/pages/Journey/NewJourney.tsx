@@ -1,9 +1,7 @@
 import AddJourney from "../../components/Journey/AddJourney";
 
 const NewJourney = () => {
-  return (
-    <AddJourney />
-  )
+  return <AddJourney />;
 };
 
 export default NewJourney;

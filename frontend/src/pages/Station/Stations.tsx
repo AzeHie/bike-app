@@ -72,14 +72,20 @@ const Stations: React.FC = () => {
 
   return (
     <React.Fragment>
-      <ErrorModal error={error} onClear={clearError}/>
+      <ErrorModal error={error} onClear={clearError} />
       {isLoading && (
         <div className="center">
           <LoadingSpinner />
         </div>
       )}
       {!isLoading && loadedStations && (
-        <StationList stations={loadedStations} page={page} numbOfPages={numbOfPages} sortHandler={sortHandler} pageChangeHandler={pageChangeHandler} />
+        <StationList
+          stations={loadedStations}
+          page={page}
+          numbOfPages={numbOfPages}
+          sortHandler={sortHandler}
+          pageChangeHandler={pageChangeHandler}
+        />
       )}
     </React.Fragment>
   );

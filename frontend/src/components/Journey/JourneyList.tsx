@@ -16,7 +16,6 @@ const JourneyList: React.FC<{
   sortHandler: (sortBy: string) => void;
   pageChangeHandler: (newPage: number) => void;
 }> = (props) => {
-
   const onSortItems = (sortBy: string) => {
     props.sortHandler(sortBy);
   };
