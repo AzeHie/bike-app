@@ -17,5 +17,5 @@ IMPORTANT NOTE ABOUT THE DATA SETS FOR THIS ASSIGNMENT:
   - There was also lot of documents multiple times, I didn't do anything about it.
 
 IMPORTANT NOTE ABOUT REACT.STRICT MODE:
-  - Since strict mode renders component twice when first time rendered on the screen (atleast when in dev-mode), there is some problems showing loading spinner on the first time when component is rendered. And since that and only because of that you should remove <React.StrictMode> tags in the index.tsx file when running app in dev-mode! Everything else is working fine.
+  - Since strict mode renders component twice when first time rendered on the screen (atleast/only(?) when in dev-mode), there is some problems showing loading spinner on the first time when component is rendered. And since that and only because of that you should remove <React.StrictMode> tags in the index.tsx file when running app in dev-mode! Everything else is working just fine also when strict mode is on.
 
