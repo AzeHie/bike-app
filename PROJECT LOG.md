@@ -111,3 +111,10 @@ Frontend:
 25.4.2023
 Frontend & Backend:
 - Working with add journey (almost finished, except some validation on the backend and info for the user about the successfully operation.
+
+26.4.2023
+Frontend & Backend:
+- Some bug fixing on "add journey" and "add station" (just basic typos on the data passed from frontend to the backend).
+- Fixed bug with error modal when adding new journey or station, if error occurred nothing happened (no error modal - no message). That was because I had user navigation (after form submission) outside the try block - so the navigation happened before throwing an error. After I moved navigation logic inside the try block, it works good. And yes, it was of course also bad user experience, because if something was wrong with the form, user was navigated away anyways. 
+- Added backend validation with express-validation.
+- Added notification for the user on successful add, when adding journeys or stations. Works out with own generic Modal component.
