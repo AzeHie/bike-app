@@ -112,6 +112,8 @@ Frontend:
 Frontend & Backend:
 - Working with add journey (almost finished, except some validation on the backend and info for the user about the successfully operation.
 
+----
+
 26.4.2023
 Frontend & Backend:
 - Some bug fixing on "add journey" and "add station" (just basic typos on the data passed from frontend to the backend).
