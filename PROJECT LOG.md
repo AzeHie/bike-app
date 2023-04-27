@@ -127,3 +127,6 @@ Frontend & Backend:
 27.4.
 Backend:
   - Added logic to calc avg distances of started and ended journeys from the station (for single station view usage). Somehow it didn't work out with mongoDB query which I should do for sure, but in this case I implemented another solution.
+
+Frotend:
+  - Working with single station view. Added average distances of journeys from/to the station. Moved station data and journey data fetching to the different functions (and different components) => station data is loaded before journey data (of specific station). As the result station details is rendered on the screen at first, and "loading.." text is shown on journey details for the user until journey data is loaded too.
