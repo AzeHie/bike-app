@@ -131,3 +131,4 @@ Backend:
 
 Frotend:
   - Working with single station view. Added average distances of journeys from/to the station. Moved station data and journey data fetching to the different functions (and different components) => station data is loaded before journey data (of specific station). As the result station details is rendered on the screen at first, and "loading.." text is shown on journey details for the user until journey data is loaded too.
+  - Added search field to the stationlist, and logic to send "searchterm" to the backend. This is something totally new for me, which means there is possiblity that solution is not the best one. But well, let's see if that works out!
