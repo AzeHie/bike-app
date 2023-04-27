@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Tooltip from "@mui/material/Tooltip";
 import { FaSort } from "react-icons/fa";
 import { Pagination } from "@mui/material";
@@ -15,7 +15,11 @@ const JourneyList: React.FC<{
   numbOfPages: number;
   sortHandler: (sortBy: string) => void;
   pageChangeHandler: (newPage: number) => void;
+  searchHandler: (searchTerm: string) => void;
+  searchTerm: string;
 }> = (props) => {
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
   const onSortItems = (sortBy: string) => {
     props.sortHandler(sortBy);
   };
@@ -24,9 +28,44 @@ const JourneyList: React.FC<{
     props.pageChangeHandler(newPage);
   };
 
+  const onSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (searchInputRef.current !== null) {
+      props.searchHandler(searchInputRef.current.value);
+    }
+  };
+
+  const resetSearch = () => {
+    props.searchHandler("");
+  };
+
   return (
     <Card>
       <div className="journeylist-container">
+        <form className="search-form" onSubmit={onSearch}>
+          <input
+            ref={searchInputRef}
+            className="search-input"
+            type="text"
+            placeholder="Search by station name.."
+          />
+          <button className="search-button" type="submit">
+            SEARCH
+          </button>
+        </form>
+        {!!props.searchTerm && (
+          <div className="search-notification">
+            {props.journeys.length > 0 ? (
+              <p>Showing results for search of {props.searchTerm}</p>
+            ) : (
+              <p>No results for search of {props.searchTerm}</p>
+            )}
+            <button className="search-show-all-button" onClick={resetSearch}>
+              SHOW ALL STATIONS
+            </button>
+          </div>
+        )}
         <div className="journeys-header-line">
           <span>
             Departure station
@@ -82,15 +121,19 @@ const JourneyList: React.FC<{
             duration={item.duration}
           />
         ))}
-        <div className="pagination">
-          <Pagination
-            count={props.numbOfPages}
-            page={props.page}
-            size="large"
-            variant="outlined"
-            onChange={onPageChange}
-          />
-        </div>
+        {props.journeys.length < 25 ? (
+          <div />
+        ) : (
+          <div className="pagination">
+            <Pagination
+              count={props.numbOfPages}
+              page={props.page}
+              size="large"
+              variant="outlined"
+              onChange={onPageChange}
+            />
+          </div>
+        )}
       </div>
     </Card>
   );

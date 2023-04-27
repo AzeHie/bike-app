@@ -31,7 +31,6 @@ const getStations = async (req, res, next) => {
     }
     numbOfPages = await Station.countDocuments({}, { hint: "_id_" });
   } catch (err) {
-    console.log(err);
     const error = new HttpError("Could not fetch data, please try again.", 500);
     return next(error);
   }
@@ -115,7 +114,6 @@ const getJourneyDataOfStation = async (req, res, next) => {
       endedAvgInKm = (endedTotalDistance / endedCount / 1000).toFixed(2);
     }
   } catch (err) {
-    console.log(err);
     const error = new HttpError(
       "Could not get journey data for this station!",
       500

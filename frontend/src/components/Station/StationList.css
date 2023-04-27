@@ -97,3 +97,33 @@
 .search-button:hover {
   background-color:rgb(115, 210, 115);
 }
+
+.search-notification {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid green;
+  background: rgb(158, 201, 158);
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+.search-notification p {
+  font-style: italic;
+  font-weight: bolder;
+}
+
+.search-show-all-button {
+  justify-self: center;
+  align-self: center;
+  background: rgb(92, 128, 92);
+  border: 1px solid black;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: 0.5s background-color;
+  font-weight: bolder;
+}
+
+.search-show-all-button:hover {
+  background-color:rgb(115, 210, 115);
+}

@@ -12,6 +12,7 @@ const Journeys: React.FC = () => {
   const [numbOfPages, setNumbOfPages] = useState<number>(0);
   const [sortOrder, setSortOrder] = useState<number>(-1);
   const [sortBy, setSortBy] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const changeDuration = (duration: number) => {
@@ -54,11 +55,23 @@ const Journeys: React.FC = () => {
     // triggers useEffect below
   };
 
+  const searchHandler = (searchTerm: string) => {
+    // change first char to uppercase for mongoDB query:
+    let modifiedSearchTerm = searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1);
+    setSearchTerm(modifiedSearchTerm);
+    // triggers useEffect
+  }
+
   useEffect(() => {
     const fetchJourneys = async () => {
       try {
         let responseData;
-        if (!sortOrder || sortBy === "") {
+        if (searchTerm !== "") {
+          responseData = await sendRequest(
+            `http://localhost:5000/api/journeys/?search=${searchTerm}`
+          );
+        }
+        else if (!sortOrder || sortBy === "") {
           responseData = await sendRequest(
             `http://localhost:5000/api/journeys/?p=${page}`
           );
@@ -91,7 +104,7 @@ const Journeys: React.FC = () => {
       }
     };
     fetchJourneys();
-  }, [sendRequest, page, sortBy, sortOrder]); // sendRequest wrapped with useCallback in http-hook
+  }, [sendRequest, page, sortBy, sortOrder, searchTerm]); // sendRequest wrapped with useCallback in http-hook
 
   return (
     <React.Fragment>
@@ -108,6 +121,8 @@ const Journeys: React.FC = () => {
           numbOfPages={numbOfPages}
           sortHandler={sortHandler}
           pageChangeHandler={pageChangeHandler}
+          searchHandler={searchHandler}
+          searchTerm={searchTerm}
         />
       )}
     </React.Fragment>

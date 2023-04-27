@@ -3,6 +3,7 @@ const Journey = require("../models/journey");
 const HttpError = require("../models/http-error");
 
 const getJourneys = async (req, res, next) => {
+  const searchTerm = req.query.search;
   const sortBy = req.query.sortby;
   const sortOrder = req.query.sortorder;
   const page = req.query.p || 0;
@@ -12,7 +13,15 @@ const getJourneys = async (req, res, next) => {
   let journeys;
   let numbOfPages;
   try {
-    if (sortBy && sortOrder) {
+    if (searchTerm) {
+      const query = {
+        $and: [
+          { DepartureStationName: { $regex: searchTerm } },
+          { ReturnStationName: { $regex: searchTerm } },
+        ],
+      };
+      journeys = await Journey.find(query).limit(itemsPerPage).skip(page * itemsPerPage);
+    } else if (sortBy && sortOrder) {
       journeys = await Journey.find({})
         .sort(sort)
         .skip(page * itemsPerPage)
@@ -24,6 +33,7 @@ const getJourneys = async (req, res, next) => {
     }
     numbOfPages = await Journey.countDocuments({}, { hint: "_id_" });
   } catch (err) {
+    console.log(err);
     const error = new HttpError("Could not fetch data, please try again.", 500);
     return next(error);
   }
@@ -36,11 +46,11 @@ const getJourneys = async (req, res, next) => {
 
 const addJourney = async (req, res, next) => {
   if (req.body.departureTime > req.body.returnTime) {
-      const error = new HttpError(
-        "Departure time can not be after the return time",
-        403
-      );
-      return next(error);
+    const error = new HttpError(
+      "Departure time can not be after the return time",
+      403
+    );
+    return next(error);
   }
 
   const journey = new Journey({
@@ -49,7 +59,7 @@ const addJourney = async (req, res, next) => {
     DepatureStationName: req.body.departureStation,
     ReturnStationName: req.body.returnStation,
     CoveredDistanceInMeters: req.body.distance,
-    DurationInSeconds: req.body.duration
+    DurationInSeconds: req.body.duration,
   });
 
   try {
@@ -60,7 +70,7 @@ const addJourney = async (req, res, next) => {
       500
     );
     return next(error);
-  };
+  }
 
   res.status(200).json({
     message: "New journey added successfully.",

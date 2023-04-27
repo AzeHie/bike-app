@@ -16,6 +16,7 @@ const StationList: React.FC<{
   sortHandler: (sortBy: string) => void;
   pageChangeHandler: (newPage: number) => void;
   searchHandler: (searchTerm: string) => void;
+  searchTerm: string;
 }> = (props) => {
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -35,6 +36,10 @@ const StationList: React.FC<{
     }
   };
 
+  const resetSearch = () => {
+    props.searchHandler("");
+  };
+
   return (
     <Card>
       <div className="stationlist-container">
@@ -49,6 +54,18 @@ const StationList: React.FC<{
             SEARCH
           </button>
         </form>
+        {!!props.searchTerm && (
+          <div className="search-notification">
+            {props.stations.length > 0 ? (
+              <p>Showing results for search of {props.searchTerm}</p>
+            ) : (
+              <p>No results for search of {props.searchTerm}</p>
+            )}
+            <button className="search-show-all-button" onClick={resetSearch}>
+              SHOW ALL STATIONS
+            </button>
+          </div>
+        )}
         <div className="stations-header-line">
           <span>
             Station name
@@ -89,7 +106,9 @@ const StationList: React.FC<{
             <span>{item.city}</span>
           </NavLink>
         ))}
-        {props.stations.length < 25 ? <div></div> : (
+        {props.stations.length < 25 ? (
+          <div />
+        ) : (
           <div className="pagination">
             <Pagination
               count={props.numbOfPages}

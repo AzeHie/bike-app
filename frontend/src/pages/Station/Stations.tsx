@@ -11,7 +11,7 @@ const Stations: React.FC = () => {
   const [numbOfPages, setNumbOfPages] = useState<number>(0);
   const [sortOrder, setSortOrder] = useState<number>(-1);
   const [sortBy, setSortBy] = useState<string>("");
-  const [searchTerm, setSearchTerm] = useState<String>("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const pageChangeHandler = (newPage: number) => {
@@ -28,7 +28,9 @@ const Stations: React.FC = () => {
   };
 
   const searchHandler = (searchTerm: string) => {
-    setSearchTerm(searchTerm);
+    // change first char to uppercase for mongoDB query:
+    let modifiedSearchTerm = searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1);
+    setSearchTerm(modifiedSearchTerm);
     // triggers useEffect
   }
 
@@ -39,7 +41,7 @@ const Stations: React.FC = () => {
         if (searchTerm !== "") {
           responseData = await sendRequest(
             `http://localhost:5000/api/stations/?search=${searchTerm}`
-          )
+          );
         } 
         else if (!sortOrder || sortBy === "") {
           responseData = await sendRequest(
@@ -97,6 +99,7 @@ const Stations: React.FC = () => {
           sortHandler={sortHandler}
           pageChangeHandler={pageChangeHandler}
           searchHandler={searchHandler}
+          searchTerm={searchTerm}
         />
       )}
     </React.Fragment>
