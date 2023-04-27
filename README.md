@@ -35,5 +35,5 @@ HOW TO INSTALL AND TEST THE APPLICATION:
 6. Start frontend/ui: type "npm start" in frontend folder => starts react app in localhost:3000
 7. Start backend: type "npm start" in backend folder => starts nodeJS backend in localhost:5000
 8. Open localhost:3000 (actually should happen automatically) in browser => app should be running!
-9. LoadingSpinner / loading texts not working correctly in dev-mode because of that react.strict mode "twice rendering" thing. Remove <React.StrictMode> tags in the index.tsx if you like to get better user experience).
+9. LoadingSpinner / loading texts not working correctly in dev-mode because of that react.strict mode "twice rendering" thing. Remove <React.StrictMode> tags in the index.tsx if you like to get better user experience also in dev-mode.
 
