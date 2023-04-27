@@ -27,7 +27,7 @@ HOW TO INSTALL AND TEST THE APPLICATION:
 
 1. Download zip
 2. Extract files
-3. Add .env file to the backend's root folder, I'll give you code for that file somehow/somewhere (includes some passwords to the database etc).
+3. Add .env file to the backend's root folder (easiest way to do that is vs-code or some other IDE), I'll give you code for that file somehow/somewhere (includes some passwords to the database etc).
 4. Navigate to backend folder of app with vs-code terminal or cmd => install with command "npm install"
 5. Navigate to frontend folder of app with vs-code terminal or cmd. => install with command "npm install"
 6. Start frontend/ui: type "npm start" in frontend folder => starts react app in localhost:3000
