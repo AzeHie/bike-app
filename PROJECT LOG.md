@@ -124,7 +124,8 @@ Frontend & Backend:
 
 ----
 
-27.4.
+27.4.2023
+
 Backend:
   - Added logic to calc avg distances of started and ended journeys from the station (for single station view usage). Somehow it didn't work out with mongoDB query which I should do for sure, but in this case I implemented another solution.
 
