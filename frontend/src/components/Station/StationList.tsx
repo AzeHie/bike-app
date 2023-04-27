@@ -39,8 +39,15 @@ const StationList: React.FC<{
     <Card>
       <div className="stationlist-container">
         <form className="search-form" onSubmit={onSearch}>
-          <input ref={searchInputRef} className="search-input" type="text" placeholder="Search by station name.." /> 
-          <button className="search-button" type="submit">SEARCH</button>
+          <input
+            ref={searchInputRef}
+            className="search-input"
+            type="text"
+            placeholder="Search by station name.."
+          />
+          <button className="search-button" type="submit">
+            SEARCH
+          </button>
         </form>
         <div className="stations-header-line">
           <span>
@@ -82,15 +89,17 @@ const StationList: React.FC<{
             <span>{item.city}</span>
           </NavLink>
         ))}
-        <div className="pagination">
-          <Pagination
-            count={props.numbOfPages}
-            page={props.page}
-            size="large"
-            variant="outlined"
-            onChange={onPageChange}
-          />
-        </div>
+        {props.stations.length < 25 ? <div></div> : (
+          <div className="pagination">
+            <Pagination
+              count={props.numbOfPages}
+              page={props.page}
+              size="large"
+              variant="outlined"
+              onChange={onPageChange}
+            />
+          </div>
+        )}
       </div>
     </Card>
   );

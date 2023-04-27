@@ -29,7 +29,6 @@ const Stations: React.FC = () => {
 
   const searchHandler = (searchTerm: string) => {
     setSearchTerm(searchTerm);
-    console.log(searchTerm);
     // triggers useEffect
   }
 

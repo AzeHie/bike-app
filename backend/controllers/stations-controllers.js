@@ -11,13 +11,15 @@ const getStations = async (req, res, next) => {
   const page = req.query.p || 0;
   const itemsPerPage = 25;
 
-  console.log(searchTerm);
 
   let sort = { [sortBy]: sortOrder };
   let stations;
   let numbOfPages;
   try {
-    if (sortBy && sortOrder) {
+    if (searchTerm) {
+      const query = {"Nimi": {"$regex": searchTerm}};
+      stations = await Station.find(query);
+    } else if (sortBy && sortOrder) {
       stations = await Station.find({})
         .sort(sort)
         .skip(page * itemsPerPage)
@@ -29,6 +31,7 @@ const getStations = async (req, res, next) => {
     }
     numbOfPages = await Station.countDocuments({}, { hint: "_id_" });
   } catch (err) {
+    console.log(err);
     const error = new HttpError("Could not fetch data, please try again.", 500);
     return next(error);
   }
@@ -86,28 +89,31 @@ const getJourneyDataOfStation = async (req, res, next) => {
     endedJourneysAmount = await Journey.countDocuments({
       ReturnStationName: station[0].Nimi,
     });
-    const startedJourneys = await Journey.find({ DepartureStationName: station[0].Nimi });
-    const endedJourneys = await Journey.find({ ReturnStationName: station[0].Nimi });
+    const startedJourneys = await Journey.find({
+      DepartureStationName: station[0].Nimi,
+    });
+    const endedJourneys = await Journey.find({
+      ReturnStationName: station[0].Nimi,
+    });
 
     // calculate total distance and avg distance for both cases:
-    startedJourneys.forEach(item => {
+    startedJourneys.forEach((item) => {
       startedTotalDistance += item.CoveredDistanceInMeters;
       startedCount++;
     });
 
-    if(startedCount > 0) {
-      startedAvgInKm = ((startedTotalDistance / startedCount) / 1000).toFixed(2);
+    if (startedCount > 0) {
+      startedAvgInKm = (startedTotalDistance / startedCount / 1000).toFixed(2);
     }
 
-    endedJourneys.forEach(item => {
+    endedJourneys.forEach((item) => {
       endedTotalDistance += item.CoveredDistanceInMeters;
       endedCount++;
     });
 
-    if(endedCount > 0) {
-      endedAvgInKm = ((endedTotalDistance / endedCount) / 1000).toFixed(2);
+    if (endedCount > 0) {
+      endedAvgInKm = (endedTotalDistance / endedCount / 1000).toFixed(2);
     }
-
   } catch (err) {
     console.log(err);
     const error = new HttpError(
@@ -121,7 +127,7 @@ const getJourneyDataOfStation = async (req, res, next) => {
     startedJourneys: startedJourneysAmount,
     endedJourneys: endedJourneysAmount,
     startedAvg: startedAvgInKm,
-    endedAvg: endedAvgInKm
+    endedAvg: endedAvgInKm,
   });
 };
 
