@@ -6,7 +6,7 @@ Backend: nodeJS & Express
 
 Database: Mongo
 
-Style: CSS
+Styling: CSS
 
 ---
 
