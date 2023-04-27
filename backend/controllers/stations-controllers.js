@@ -5,10 +5,13 @@ const HttpError = require("../models/http-error");
 const getCoordinates = require("../util/location");
 
 const getStations = async (req, res, next) => {
+  const searchTerm = req.query.search;
   const sortBy = req.query.sortby;
   const sortOrder = req.query.sortorder;
   const page = req.query.p || 0;
   const itemsPerPage = 25;
+
+  console.log(searchTerm);
 
   let sort = { [sortBy]: sortOrder };
   let stations;

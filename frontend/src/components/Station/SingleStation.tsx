@@ -8,7 +8,6 @@ import "./SingleStation.css";
 import Modal from "../../shared/layout/Modal";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import ErrorModal from "../../shared/layout/ErrorModal";
-import LoadingSpinner from "../../shared/layout/LoadingSpinner";
 
 const SingleStation: React.FC<{
   station: Station;

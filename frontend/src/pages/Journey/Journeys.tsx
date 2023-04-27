@@ -67,7 +67,7 @@ const Journeys: React.FC = () => {
             `http://localhost:5000/api/journeys/?p=${page}&sortby=${sortBy}&sortorder=${sortOrder}`
           );
         }
-        let numberOfPages = Math.round(responseData.numbOfPages / 25);
+        let numberOfPages = Math.trunc(responseData.numbOfPages / 25);
         setNumbOfPages(numberOfPages);
 
         let tempJourneys: Journey[] = [];

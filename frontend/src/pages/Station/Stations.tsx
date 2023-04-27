@@ -11,6 +11,7 @@ const Stations: React.FC = () => {
   const [numbOfPages, setNumbOfPages] = useState<number>(0);
   const [sortOrder, setSortOrder] = useState<number>(-1);
   const [sortBy, setSortBy] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<String>("");
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const pageChangeHandler = (newPage: number) => {
@@ -26,11 +27,22 @@ const Stations: React.FC = () => {
     // triggers useEffect below
   };
 
+  const searchHandler = (searchTerm: string) => {
+    setSearchTerm(searchTerm);
+    console.log(searchTerm);
+    // triggers useEffect
+  }
+
   useEffect(() => {
     const fetchStations = async () => {
       try {
         let responseData;
-        if (!sortOrder || sortBy === "") {
+        if (searchTerm !== "") {
+          responseData = await sendRequest(
+            `http://localhost:5000/api/stations/?search=${searchTerm}`
+          )
+        } 
+        else if (!sortOrder || sortBy === "") {
           responseData = await sendRequest(
             `http://localhost:5000/api/stations/?p=${page}`
           );
@@ -40,7 +52,7 @@ const Stations: React.FC = () => {
           );
         }
 
-        let numberOfPages = Math.round(responseData.numbOfPages / 25);
+        let numberOfPages = Math.trunc(responseData.numbOfPages / 25);
         setNumbOfPages(numberOfPages);
 
         let tempStations: Station[] = [];
@@ -68,7 +80,7 @@ const Stations: React.FC = () => {
       }
     };
     fetchStations();
-  }, [sendRequest, page, sortBy, sortOrder]);
+  }, [sendRequest, page, sortBy, sortOrder, searchTerm]);
 
   return (
     <React.Fragment>
@@ -85,6 +97,7 @@ const Stations: React.FC = () => {
           numbOfPages={numbOfPages}
           sortHandler={sortHandler}
           pageChangeHandler={pageChangeHandler}
+          searchHandler={searchHandler}
         />
       )}
     </React.Fragment>

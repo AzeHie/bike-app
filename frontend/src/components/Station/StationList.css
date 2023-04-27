@@ -60,3 +60,40 @@
   justify-self: center;
   margin-top: 1rem;
 }
+
+/* SEARCH FORM */
+
+.search-form {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 0.5rem;
+}
+
+.search-input {
+  height: 22px;
+  font: inherit;
+  font-size: small;
+  border: 1px solid #ccc;
+  background: rgb(241, 241, 241);
+  padding: 0.15rem 0.25rem;
+}
+
+.search-input:focus {
+  outline: none;
+  background: rgb(205, 255, 205);
+  border-color: rgb(1, 80, 1);
+}
+
+.search-button {
+  height: 21px;
+  background: rgb(92, 128, 92);
+  border: 1px solid black;
+  margin-left: 5px;
+  cursor: pointer;
+  transition: 0.5s background-color;
+}
+
+.search-button:hover {
+  background-color:rgb(115, 210, 115);
+}

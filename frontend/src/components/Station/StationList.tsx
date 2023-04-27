@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Tooltip } from "@mui/material";
 import { FaSort } from "react-icons/fa";
 import { Pagination } from "@mui/material";
@@ -15,7 +15,10 @@ const StationList: React.FC<{
   numbOfPages: number;
   sortHandler: (sortBy: string) => void;
   pageChangeHandler: (newPage: number) => void;
+  searchHandler: (searchTerm: string) => void;
 }> = (props) => {
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
   const onSortItems = (sortBy: string) => {
     props.sortHandler(sortBy);
   };
@@ -24,9 +27,21 @@ const StationList: React.FC<{
     props.pageChangeHandler(newPage);
   };
 
+  const onSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (searchInputRef.current !== null) {
+      props.searchHandler(searchInputRef.current.value);
+    }
+  };
+
   return (
     <Card>
       <div className="stationlist-container">
+        <form className="search-form" onSubmit={onSearch}>
+          <input ref={searchInputRef} className="search-input" type="text" placeholder="Search by station name.." /> 
+          <button className="search-button" type="submit">SEARCH</button>
+        </form>
         <div className="stations-header-line">
           <span>
             Station name
