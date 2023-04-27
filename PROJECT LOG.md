@@ -126,9 +126,13 @@ Frontend & Backend:
 
 27.4.2023
 
-Backend:
-  - Added logic to calc avg distances of started and ended journeys from the station (for single station view usage). Somehow it didn't work out with mongoDB query which I should do for sure, but in this case I implemented another solution.
-
 Frotend:
   - Working with single station view. Added average distances of journeys from/to the station. Moved station data and journey data fetching to the different functions (and different components) => station data is loaded before journey data (of specific station). As the result station details is rendered on the screen at first, and "loading.." text is shown on journey details for the user until journey data is loaded too. (loading spinner and texts not working perfectly on dev-mode because of strict mode).
   - Added search field to the stationlist, and logic to send "searchterm" to the backend. This is something totally new for me, which means there is possiblity that solution is not the best one. But well, let's see if that works out!
+- Finished searching on frontend for both - station list and journey list.
+
+Backend:
+  - Added logic to calc avg distances of started and ended journeys from the station (for single station view usage). Somehow it didn't work out with mongoDB query which I should do for sure, but in this case I implemented another solution.
+  - Added logic for searching in both - journeys and stations controllers. Station search is working just fine, journeys needs some improving.
+
+----
