@@ -121,3 +121,9 @@ Frontend & Backend:
 - Added backend validation with express-validation.
 - Added notification for the user on successful add, when adding journeys or stations. Works out with own generic Modal component.
 - Added google map API to the frontend. Created map.tsx and map.css => Started using map in the single station view. I had some problems with using map-api-key on the frontend, since it's not good to use secret details in the frontend app. But I think it's ok to use google_map_api_key (IN THIS CASE) there, because it's pretty much secured on the google platform and allowed to use only javascript map api. Of course in real app I should do it different way, but that's something I have to learn.
+
+----
+
+27.4.
+Backend:
+  - Added logic to calc avg distances of started and ended journeys from the station (for single station view usage). Somehow it didn't work out with mongoDB query which I should do for sure, but in this case I implemented another solution.
