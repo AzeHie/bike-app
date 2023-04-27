@@ -27,6 +27,14 @@ const StationDetail: React.FC = () => {
       } catch (err) {}
     };
     fetchStation();
+
+    // const fetchJourneyData = async () => {
+    //   try {
+    //     const responseData = await sendRequest(
+    //       `http://localhost:5000/api/journeys/$`
+    //     )
+    //   }
+    // }
   }, [sendRequest, stationId]);
 
   return (

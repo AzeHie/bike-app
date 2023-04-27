@@ -32,21 +32,16 @@ const getStations = async (req, res, next) => {
 
   res.status(200).json({
     stations: stations.map((station) => station.toObject({ getters: true })),
-    numbOfPages: numbOfPages
+    numbOfPages: numbOfPages,
   });
 };
 
 const getStationById = async (req, res, next) => {
   const stationId = req.params.sid;
-
   let station;
-  let startedJourneys;
-  let endedJourneys;
 
   try {
     station = await Station.find({ _id: stationId });
-    startedJourneys = await Journey.countDocuments({ DepartureStationName: station[0].Nimi});
-    endedJourneys = await Journey.countDocuments({ ReturnStationName: station[0].Nimi });
   } catch (err) {
     const error = new HttpError("Fetching the station failed!", 500);
     return next(error);
@@ -61,16 +56,69 @@ const getStationById = async (req, res, next) => {
     city: station[0].Kaupunki,
     postalCode: station[0].PostalCode,
     x: station[0].x,
-    y: station[0].y
+    y: station[0].y,
   };
-
-  console.log(startedJourneys);
-  console.log(endedJourneys);
 
   res.status(200).json({
     station: modifiedStation,
-    startedJourneys: startedJourneys,
-    endedJourneys: endedJourneys
+  });
+};
+
+const getJourneyDataOfStation = async (req, res, next) => {
+  const stationId = req.params.sid;
+  let startedJourneysAmount = 0;
+  let endedJourneysAmount = 0;
+  let startedTotalDistance = 0;
+  let endedTotalDistance = 0;
+  let startedCount = 0;
+  let endedCount = 0;
+  let startedAvgInKm = 0;
+  let endedAvgInKm = 0;
+
+  try {
+    const station = await Station.find({ _id: stationId });
+    startedJourneysAmount = await Journey.countDocuments({
+      DepartureStationName: station[0].Nimi,
+    });
+    endedJourneysAmount = await Journey.countDocuments({
+      ReturnStationName: station[0].Nimi,
+    });
+    const startedJourneys = await Journey.find({ DepartureStationName: station[0].Nimi });
+    const endedJourneys = await Journey.find({ ReturnStationName: station[0].Nimi });
+
+    // calculate total distance and avg distance for both cases:
+    startedJourneys.forEach(item => {
+      startedTotalDistance += item.CoveredDistanceInMeters;
+      startedCount++;
+    });
+
+    if(startedCount > 0) {
+      startedAvgInKm = ((startedTotalDistance / startedCount) / 1000).toFixed(2);
+    }
+
+    endedJourneys.forEach(item => {
+      endedTotalDistance += item.CoveredDistanceInMeters;
+      endedCount++;
+    });
+
+    if(endedCount > 0) {
+      endedAvgInKm = ((endedTotalDistance / endedCount) / 1000).toFixed(2);
+    }
+
+  } catch (err) {
+    console.log(err);
+    const error = new HttpError(
+      "Could not get journey data for this station!",
+      500
+    );
+    return next(error);
+  }
+
+  res.status(200).json({
+    startedJourneys: startedJourneysAmount,
+    endedJourneys: endedJourneysAmount,
+    startedAvg: startedAvgInKm,
+    endedAvg: endedAvgInKm
   });
 };
 
@@ -80,11 +128,7 @@ const addStation = async (req, res, next) => {
   let y;
 
   let address =
-    req.body.address +
-    ", " +
-    req.body.postalCode +
-    " " +
-    req.body.city;
+    req.body.address + ", " + req.body.postalCode + " " + req.body.city;
 
   try {
     coordinates = await getCoordinates(address);
@@ -95,20 +139,21 @@ const addStation = async (req, res, next) => {
   x = coordinates.lng;
   y = coordinates.lat;
 
-  const station = new Station(
-    {
-      Nimi: req.body.name,
-      Osoite: req.body.address,
-      Kaupunki: req.body.city,
-      x: x,
-      y: y
-    }
-  );
+  const station = new Station({
+    Nimi: req.body.name,
+    Osoite: req.body.address,
+    Kaupunki: req.body.city,
+    x: x,
+    y: y,
+  });
 
   try {
     await station.save();
   } catch (err) {
-    const error = new HttpError("Could not add the new station, please check your details and try again!", 500);
+    const error = new HttpError(
+      "Could not add the new station, please check your details and try again!",
+      500
+    );
     return next(error);
   }
 
@@ -119,4 +164,5 @@ const addStation = async (req, res, next) => {
 
 exports.getStations = getStations;
 exports.getStationById = getStationById;
+exports.getJourneyDataOfStation = getJourneyDataOfStation;
 exports.addStation = addStation;

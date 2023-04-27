@@ -11,6 +11,8 @@ router.get("/", stationControllers.getStations);
 
 router.get("/:sid", stationControllers.getStationById);
 
+router.get("/journeydata/:sid", stationControllers.getJourneyDataOfStation);
+
 router.post("/add", 
 [
   check("name").isLength({min: 3, max: 50}),
