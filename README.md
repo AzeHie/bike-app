@@ -20,3 +20,17 @@ IMPORTANT NOTE ABOUT THE DATA SETS FOR THIS ASSIGNMENT:
 IMPORTANT NOTE ABOUT REACT.STRICT MODE:
   - Since strict mode renders component twice when first time rendered on the screen (atleast/only(?) when in dev-mode), there is some problems showing loading spinner and some loading texts on the first time when component is rendered. And since that and only because of that you should remove <React.StrictMode> tags in the index.tsx file when running app in dev-mode! Everything else is working just fine also when strict mode is on..
 
+
+
+HOW TO INSTALL AND TEST THE APPLICATION:
+- App is built and tested in windows, not sure how it works with linux. Node has to be installed on the computer.
+
+1. Download zip
+2. Extract files
+3. Add .env file to the backend's root folder, I'll give you code for that file somehow/somewhere (includes some passwords to the database etc).
+4. Navigate to backend folder of app with vs-code terminal or cmd => install with command "npm install"
+5. Navigate to frontend folder of app with vs-code terminal or cmd. => install with command "npm install"
+6. Start frontend/ui: type "npm start" in frontend folder => starts react app in localhost:3000
+7. Start backend: type "npm start" in backend folder => starts nodeJS backend in localhost:5000
+8. Open localhost:3000 (actually should happen automatically) in browser => app should be running!
+
