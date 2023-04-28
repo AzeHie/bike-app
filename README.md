@@ -19,10 +19,14 @@ IMPORTANT NOTE ABOUT THE DATA SETS FOR THIS ASSIGNMENT:
   - Deleted a lot of documents without coveredDistance field.
   - There was also lot of documents multiple times, I didn't do anything about it.
 
+ABOUT THE FEATURES I'VE IMPLEMENTED TO THIS PROJECT
+  - Everything of recommended features are implemented to the project. I also added most of additional features and as extra I added also UI's and endpoints for adding new stations and journeys.
+
 IMPORTANT NOTE ABOUT REACT.STRICT MODE:
   - Since strict mode renders component twice when first time rendered on the screen (atleast/only(?) when in dev-mode), there is some problems showing loading spinner and some loading texts on the first time when component is rendered. And since that and only because of that you should remove <React.StrictMode> tags in the index.tsx file when running app in dev-mode! Everything else is working just fine also when strict mode is on..
 
-
+ABOUT JOURNEYS SEARCH:
+  - Journeys search is not yet working as expected, im working on it currently. Searching in the stationlist is working good, and everything else in the app should be working as expected. 
 
 HOW TO INSTALL AND TEST THE APPLICATION:
 - App is built and tested in windows, not sure how it works with linux. Node has to be installed on the computer.
