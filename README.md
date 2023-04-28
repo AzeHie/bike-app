@@ -41,3 +41,7 @@ HOW TO INSTALL AND TEST THE APPLICATION:
 8. Open localhost:3000 (actually should happen automatically) in browser => app should be running!
 9. LoadingSpinner / loading texts not working correctly in dev-mode because of that react.strict mode "twice rendering" thing. Remove <React.StrictMode> tags in the index.tsx if you like to get better user experience also in dev-mode.
 
+ABOUT THE NAVIGATION FOLDER
+ - I had navigation folder starting with lowercase "n" on my local machine, but somehow it starts with uppercase "N" here in github. Since that there was an error when I downloaded app, installed it and started it. It was just about the import in the app.tsx file, where main header was imported with "import MainHeader from './navigation/MainHeader'" - but actual navigation folder started with uppercase "N". That issue was solved with editing folder name to start with Uppercase "N" on the local project and with changing the import in the tsx file, before pushing data to the github again.
+
+Everything should work out now, but if you have any problems with that navigation import when you test the application, look up that navigation folder name and the import in the app.tsx file.
