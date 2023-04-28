@@ -5,7 +5,7 @@ import "./App.css";
 import Journeys from "./pages/Journey/Journeys";
 import Stations from "./pages/Station/Stations";
 import StationDetail from "./pages/Station/StationDetail";
-import MainHeader from "./navigation/MainHeader";
+import MainHeader from "./Navigation/MainHeader";
 import NewStation from "./pages/Station/NewStation";
 import NewJourney from "./pages/Journey/NewJourney";
 
