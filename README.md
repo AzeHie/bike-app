@@ -25,8 +25,9 @@ ABOUT THE FEATURES I'VE IMPLEMENTED TO THIS PROJECT
 IMPORTANT NOTE ABOUT REACT.STRICT MODE:
   - Since strict mode renders components twice when first time rendered on the screen (atleast/only(?) when in dev-mode), there is some problems showing loading spinner and some loading texts when component is rendered. And since that and only because of that you should remove <React.StrictMode> tags in the index.tsx file when running app in dev-mode! Everything else is working just fine also when strict mode is on..
 
-ABOUT JOURNEYS SEARCH:
+ABOUT JOURNEYS SEARCH & TESTING:
   - Journeylist search is not yet working as expected, im working on it currently. It's possible that I change searching to filtering in the journeylist, because there is lot of results if you search for station name or anything else in the journeyslist. Searching in the stationlist is working good, and everything else in the app should be working as expected. 
+  - There is no tests in this app yet. It's something pretty new for me, just some basics in some courses I've been part in on udemy. But I'm going to learn more about testing as soon as possible.
 
 HOW TO INSTALL AND TEST THE APPLICATION:
 - App is built and tested in windows, not sure how it works with linux. Node has to be installed on the computer.
