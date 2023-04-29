@@ -27,9 +27,9 @@ IMPORTANT NOTE ABOUT REACT.STRICT MODE:
 
 ABOUT JOURNEYS SEARCH & TESTING:
   - Journeylist search is not yet working as expected, im working on it currently. It's possible that I change searching to filtering in the journeylist, because there is lot of results if you search for station name or anything else in the journeyslist. Searching in the stationlist is working good, and everything else in the app should be working as expected. 
-  - There is no tests in this app yet. It's something pretty new for me, just some basics in some courses I've been part in on udemy. But I'm going to learn more about testing as soon as possible.
+  - There is no tests in this app yet. It's something pretty new for me, just some basics in some courses I've been part in on udemy. But I'm currently learning more about testing, and a plan is to add some of them also to this project.
 
-HOW TO INSTALL AND TEST THE APPLICATION:
+HOW TO INSTALL AND MANUALLY TEST THE APPLICATION:
 - App is built and tested in windows, not sure how it works with linux. Node has to be installed on the computer.
 
 1. Download zip
