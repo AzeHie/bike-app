@@ -25,8 +25,8 @@ ABOUT THE FEATURES I'VE IMPLEMENTED TO THIS PROJECT
 IMPORTANT NOTE ABOUT REACT.STRICT MODE:
   - Since strict mode renders components twice when first time rendered on the screen (atleast/only(?) when in dev-mode), there is some problems showing loading spinner and some loading texts when component is rendered. And since that and only because of that you should remove <React.StrictMode> tags in the index.tsx file when running app in dev-mode! Everything else is working just fine also when strict mode is on..
 
-ABOUT JOURNEYS FILTERING & APP TESTS:
-  - Journeylist filtering is not yet working as expected, im working on it currently. 
+ABOUT JOURNEYS PAGINATION WHEN SORTING & APP TESTS:
+  - Journeylist pagination is NOT currently working as expected when sorting, that's something because of mongoDB disk usage limits. If navigated to the last page when sorting is "on" ==> throws error. Going to fix that as soon as possible.
   - There is no tests in this app yet. It's something pretty new for me, just some basics in some courses I've been part in on udemy. But I'm currently learning more about testing, and a plan is to add some of them also to this project.
 
 HOW TO INSTALL AND MANUALLY TEST THE APPLICATION:
