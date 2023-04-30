@@ -41,7 +41,6 @@ const JourneyList: React.FC<{
             <div className="filter-button__icon">
               <RiFilterLine />
             </div>
-          </button>
           <div className="filter-menu-content">
             <span className="filter-span" onClick={() => onFilter("DIST-UNDER")}>
               <span>Distance</span>
@@ -64,6 +63,7 @@ const JourneyList: React.FC<{
               <span>10min</span>
             </span>
           </div>
+          </button>
         </div>
         {/* <form className="search-form" onSubmit={onSearch}>
           <input
