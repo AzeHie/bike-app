@@ -9,27 +9,41 @@ const getJourneys = async (req, res, next) => {
   const page = req.query.p || 0;
   const itemsPerPage = 25;
 
+  console.log("filterterm" + filterTerm);
+
   let sort = { [sortBy]: sortOrder };
   let journeys;
   let numbOfPages;
+  let query;
   try {
     if (filterTerm) {
-      // temporary return all journeys, replace with filtering logic coming soon!:
-      journeys = await Journey.find()
-      .limit(itemsPerPage)
-      .skip(page * itemsPerPage);
-
-    } else if (sortBy && sortOrder) {
-      journeys = await Journey.find({})
+      if (filterTerm === 'DIST-UNDER') {
+        query = {"CoveredDistanceInMeters": {$lt: 2000}};
+      }
+      else if (filterTerm === 'DIST-OVER') {
+        query = {"CoveredDistanceInMeters": {$gt: 1999}};
+      }
+      else if (filterTerm === 'DURAT-UNDER') {
+        query = {"DurationInSeconds": {$lt: 600}};
+      }
+      else if (filterTerm === 'DURAT-OVER') {
+        query = {"DurationInSeconds": {$gt: 599}};
+      } else {
+        query = ({});
+      }
+    } 
+    if (sortBy && sortOrder) {
+      journeys = await Journey.find(query)
         .sort(sort)
         .skip(page * itemsPerPage)
-        .limit(itemsPerPage);
+        .limit(itemsPerPage)
+        numbOfPages = await Journey.countDocuments(query, { hint: "_id_" });
     } else {
-      journeys = await Journey.find()
+      journeys = await Journey.find(query)
         .limit(itemsPerPage)
         .skip(page * itemsPerPage);
-    }
-    numbOfPages = await Journey.countDocuments({}, { hint: "_id_" });
+        numbOfPages = await Journey.countDocuments(query, { hint: "_id_" });
+    } 
   } catch (err) {
     console.log(err);
     const error = new HttpError("Could not fetch data, please try again.", 500);

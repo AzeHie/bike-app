@@ -29,7 +29,12 @@ const JourneyList: React.FC<{
   };
 
   const onFilter = (filterTerm: string) => {
+
     props.filterHandler(filterTerm);
+  }
+
+  const resetFilter = () => {
+    props.filterHandler("");
   }
 
   return (
@@ -65,29 +70,14 @@ const JourneyList: React.FC<{
           </div>
           </button>
         </div>
-        {/* <form className="search-form" onSubmit={onSearch}>
-          <input
-            ref={searchInputRef}
-            className="search-input"
-            type="text"
-            placeholder="Search by station name.."
-          />
-          <button className="search-button" type="submit">
-            SEARCH
-          </button>
-        </form>
-        {!!props.searchTerm && (
+        {!!props.filterTerm && (
           <div className="search-notification">
-            {props.journeys.length > 0 ? (
-              <p>Showing results for search of {props.searchTerm}</p>
-            ) : (
-              <p>No results for search of {props.searchTerm}</p>
-            )}
-            <button className="search-show-all-button" onClick={resetSearch}>
-              SHOW ALL STATIONS
+            <p>Current filter: "{props.filterTerm}"</p>
+            <button className="search-show-all-button" onClick={resetFilter}>
+              REMOVE FILTERS
             </button>
           </div>
-        )} */}
+        )} 
         <div className="journeys-header-line">
           <span>
             Departure station
@@ -143,9 +133,6 @@ const JourneyList: React.FC<{
             duration={item.duration}
           />
         ))}
-        {props.journeys.length < 25 ? (
-          <div />
-        ) : (
           <div className="pagination">
             <Pagination
               count={props.numbOfPages}
@@ -155,7 +142,6 @@ const JourneyList: React.FC<{
               onChange={onPageChange}
             />
           </div>
-        )}
       </div>
     </Card>
   );
