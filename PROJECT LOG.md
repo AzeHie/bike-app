@@ -139,5 +139,7 @@ Backend:
 
 30.4.2023
 
-Frontend:
+Frontend & backend:
 - Replaced journeylist searching with filtering.
+
+error with mongoDB datalimits when sorting, needs to be fixed.
