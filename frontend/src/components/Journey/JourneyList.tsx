@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
+import React from "react";
 import Tooltip from "@mui/material/Tooltip";
 import { FaSort } from "react-icons/fa";
 import { Pagination } from "@mui/material";
+import { RiFilterLine } from "react-icons/ri";
 
 import Journey from "../../shared/models/Journey";
 import JourneyItems from "./JourneyItem";
@@ -15,10 +16,9 @@ const JourneyList: React.FC<{
   numbOfPages: number;
   sortHandler: (sortBy: string) => void;
   pageChangeHandler: (newPage: number) => void;
-  searchHandler: (searchTerm: string) => void;
-  searchTerm: string;
+  filterHandler: (filterTerm: string) => void;
+  filterTerm: string;
 }> = (props) => {
-  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const onSortItems = (sortBy: string) => {
     props.sortHandler(sortBy);
@@ -28,22 +28,44 @@ const JourneyList: React.FC<{
     props.pageChangeHandler(newPage);
   };
 
-  const onSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (searchInputRef.current !== null) {
-      props.searchHandler(searchInputRef.current.value);
-    }
-  };
-
-  const resetSearch = () => {
-    props.searchHandler("");
-  };
+  const onFilter = (filterTerm: string) => {
+    props.filterHandler(filterTerm);
+  }
 
   return (
     <Card>
       <div className="journeylist-container">
-        <form className="search-form" onSubmit={onSearch}>
+        <div className="filter">
+          <button className="filter-button">
+            <span>FILTER</span>
+            <div className="filter-button__icon">
+              <RiFilterLine />
+            </div>
+          </button>
+          <div className="filter-menu-content">
+            <span className="filter-span" onClick={() => onFilter("DIST-UNDER")}>
+              <span>Distance</span>
+              <span>{"<"}</span>
+              <span> 2km</span>{" "}
+            </span>
+            <span className="filter-span" onClick={() => onFilter("DIST-OVER")}>
+              <span>Distance</span>
+              <span>{">"} </span>
+              <span>2km</span>
+            </span>
+            <span className="filter-span" onClick={() => onFilter("DURAT-UNDER")}>
+              <span>Duration</span>
+              <span>{"<"}</span>
+              <span>10min</span>{" "}
+            </span>
+            <span className="filter-span-last" onClick={() => onFilter("DURAT-OVER")}>
+              <span>Duration</span>
+              <span>{">"}</span>
+              <span>10min</span>
+            </span>
+          </div>
+        </div>
+        {/* <form className="search-form" onSubmit={onSearch}>
           <input
             ref={searchInputRef}
             className="search-input"
@@ -65,7 +87,7 @@ const JourneyList: React.FC<{
               SHOW ALL STATIONS
             </button>
           </div>
-        )}
+        )} */}
         <div className="journeys-header-line">
           <span>
             Departure station

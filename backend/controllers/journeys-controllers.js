@@ -3,7 +3,7 @@ const Journey = require("../models/journey");
 const HttpError = require("../models/http-error");
 
 const getJourneys = async (req, res, next) => {
-  const searchTerm = req.query.search;
+  const filterTerm = req.query.filter;
   const sortBy = req.query.sortby;
   const sortOrder = req.query.sortorder;
   const page = req.query.p || 0;
@@ -13,14 +13,12 @@ const getJourneys = async (req, res, next) => {
   let journeys;
   let numbOfPages;
   try {
-    if (searchTerm) {
-      const query = {
-        $and: [
-          { DepartureStationName: { $regex: searchTerm } },
-          { ReturnStationName: { $regex: searchTerm } },
-        ],
-      };
-      journeys = await Journey.find(query).limit(itemsPerPage).skip(page * itemsPerPage);
+    if (filterTerm) {
+      // temporary return all journeys, replace with filtering logic coming soon!:
+      journeys = await Journey.find()
+      .limit(itemsPerPage)
+      .skip(page * itemsPerPage);
+
     } else if (sortBy && sortOrder) {
       journeys = await Journey.find({})
         .sort(sort)
