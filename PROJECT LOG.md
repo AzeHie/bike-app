@@ -136,3 +136,8 @@ Backend:
   - Added logic for searching in both - journeys and stations controllers. Station search is working just fine, journeys needs some improving.
 
 ----
+
+30.4.2023
+
+Frontend:
+- Replaced journeylist searching with filtering.
