@@ -147,9 +147,9 @@ const addStation = async (req, res, next) => {
   y = coordinates.lat;
 
   const station = new Station({
-    Nimi: req.body.name,
-    Osoite: req.body.address,
-    Kaupunki: req.body.city,
+    Nimi: req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1),
+    Osoite: req.body.address.charAt(0).toUpperCase() + req.body.address.slice(1),
+    Kaupunki: req.body.city.charAt(0).toUpperCase() + req.body.city.slice(1),
     x: x,
     y: y,
   });

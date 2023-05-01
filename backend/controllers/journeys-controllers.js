@@ -34,15 +34,17 @@ const getJourneys = async (req, res, next) => {
     } 
     if (sortBy && sortOrder) {
       journeys = await Journey.find(query)
-        .sort(sort)
-        .skip(page * itemsPerPage)
-        .limit(itemsPerPage)
-        numbOfPages = await Journey.countDocuments(query, { hint: "_id_" });
+      .skip(page * itemsPerPage)
+      .limit(itemsPerPage)
+      .sort(sort);
+
+      numbOfPages = await Journey.countDocuments(query, { hint: "_id_" });
     } else {
       journeys = await Journey.find(query)
         .limit(itemsPerPage)
         .skip(page * itemsPerPage);
-        numbOfPages = await Journey.countDocuments(query, { hint: "_id_" });
+      
+      numbOfPages = await Journey.countDocuments(query, { hint: "_id_" });
     } 
   } catch (err) {
     console.log(err);
@@ -68,8 +70,8 @@ const addJourney = async (req, res, next) => {
   const journey = new Journey({
     Departure: req.body.departureTime,
     Return: req.body.returnTime,
-    DepatureStationName: req.body.departureStation,
-    ReturnStationName: req.body.returnStation,
+    DepatureStationName: req.body.departureStation.charAt(0).toUpperCase() + req.body.departureStation.slice(1),
+    ReturnStationName: req.body.returnStation.charAt(0).toUpperCase() + req.body.returnStation.slice(1),
     CoveredDistanceInMeters: req.body.distance,
     DurationInSeconds: req.body.duration,
   });
