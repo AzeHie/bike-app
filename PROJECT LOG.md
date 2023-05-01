@@ -143,3 +143,12 @@ Frontend & backend:
 - Replaced journeylist searching with filtering.
 
 error with mongoDB datalimits when sorting, needs to be fixed.
+
+----
+
+1.5.2023
+Tried to fix the problem with mongoDB datalimits with couple different ways, but didn't solve it:
+- MongoDB built in allowDiskUse(true) ==> No affect at all. That should fix it, but it did not. Perhaps because of free mongoDB.
+- Find all docs from the collection and then sort them with javascripts built in sort-method. After that manually calculate (pageNumber x itemsPerPage) which ones should be returned to the frontend. Well, that takes years because of size of the data.
+
+Added some data adjusting when new station or journey is added ==> first letter of station name or address to the uppercase, because mongoDB sort method do not work correctly with lowercase and uppercase characters.
