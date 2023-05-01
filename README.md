@@ -25,9 +25,15 @@ ABOUT THE FEATURES I'VE IMPLEMENTED TO THIS PROJECT
 IMPORTANT NOTE ABOUT REACT.STRICT MODE:
   - Since strict mode renders components twice when first time rendered on the screen (atleast/only(?) when in dev-mode), there is some problems showing loading spinner and some loading texts when component is rendered. And since that and only because of that you should remove <React.StrictMode> tags in the index.tsx file when running app in dev-mode! Everything else is working just fine also when strict mode is on..
 
-ABOUT JOURNEYS PAGINATION WHEN SORTING & APP TESTS:
-  - Journeylist pagination is NOT currently working as expected when sorting, that's something because of mongoDB disk usage limits. If navigated to the last page when sorting is "on" ==> throws error. Going to fix that as soon as possible.
-  - There is no tests in this app yet. It's something pretty new for me, just some basics in some courses I've been part in on udemy. But I'm currently learning more about testing, and a plan is to add some of them also to this project.
+ABOUT JOURNEYS PAGINATION WHEN SORTING (bug):
+Journeylist pagination is NOT currently working as expected when sorting. If navigated to the last page when sorting is "on" ==> throws error. That's something because of mongoDB memory usage limits. I tried to fix that issue on many different ways:
+  1. MongoDB built in allowDiskUse(true) ==> No affect at all. That should fix it, but it did not. Perhaps because of free mongoDB.
+  2. Find all docs from the collection and then sort them with javascripts built in sort-method. After that manually calculate (pageNumber x itemsPerPage) which ones should be returned to the frontend. Well, that takes years because of size of the data.
+
+Summary: Don't navigate to the last page when journeys are sorted (:D). I don't know is there any reasons to do that anyway.
+ 
+APP TESTS:
+There is no tests in this app yet. It's something pretty new for me, just some basics in some courses I've been part in on udemy. But I'm currently learning more about testing, and a plan is to add some of them also to this project.
 
 HOW TO INSTALL AND MANUALLY TEST THE APPLICATION:
 - App is built and tested in windows, not sure how it works with linux. Node has to be installed on the computer.
