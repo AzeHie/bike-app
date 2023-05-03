@@ -5,7 +5,7 @@ import { Pagination } from "@mui/material";
 import { RiFilterLine } from "react-icons/ri";
 
 import Journey from "../../shared/models/Journey";
-import JourneyItems from "./JourneyItem";
+import JourneyItem from "./JourneyItem";
 import Card from "../../shared/layout/Card";
 
 import "./JourneyList.css";
@@ -125,7 +125,7 @@ const JourneyList: React.FC<{
           </span>
         </div>
         {props.journeys.map((item) => (
-          <JourneyItems
+          <JourneyItem
             key={item.id}
             departureStation={item.departureStation}
             returnStation={item.returnStation}
