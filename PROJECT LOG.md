@@ -156,4 +156,4 @@ Added some data adjusting when new station or journey is added ==> first letter 
 ----
 
 3.5.2023
-Added first "dumb" test to the journeyItem. Plan is to learn more about testing and add more unit tests to the project.
+Added first "dummy" test to the journeyItem. Plan is to learn more about testing and add more unit tests to the project.
