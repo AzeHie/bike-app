@@ -33,7 +33,7 @@ ABOUT JOURNEYS PAGINATION WHEN SORTING (bug):
 Summary: Don't navigate to the last page when journeys are sorted (:D). I don't know is there any reasons to do that anyway.
  
 APP TESTS:
-- There is just one "dummy" test in the app. Tests are something pretty new for me, just some basics in some courses I've been part in on udemy. But I'm currently learning more about testing, and a plan is to add some of them also to this project. 
+- There some simple tests in the app. I'm currently learning more about testing, and i'll add more as soon as possible. 
 - You can run test(s) simple with "npm test" in the frontend folders terminal on vs-code or some other IDE.
 
 HOW TO INSTALL AND MANUALLY TEST THE APPLICATION:
