@@ -28,9 +28,9 @@ IMPORTANT NOTE ABOUT REACT.STRICT MODE:
 ABOUT JOURNEYS PAGINATION WHEN SORTING (bug):
 - Journeylist pagination is NOT currently working as expected when sorting. If navigated to the last page when sorting is "on" ==> throws error. That's something because of mongoDB memory usage limits. I tried to fix that issue on many different ways:
   1. MongoDB built in allowDiskUse(true) ==> No affect at all. That should fix it, but it did not. Perhaps because of free mongoDB.
-  2. Find all docs from the collection and then sort them with javascripts built in sort-method. After that manually calculate (pageNumber x itemsPerPage) which ones should be returned to the frontend. Well, that takes years because of size of the data.
+  2. Find all docs from the collection and then sort them with javascripts built in sort-method. After that manually calculate (pageNumber x itemsPerPage) which ones should be returned to the frontend. Well, that takes years because of size of the data or maybe there was something wrong in my code. I think i'm gonna be back on this later..
 
-Summary: Don't navigate to the last page when journeys are sorted (:D). I don't know is there any reasons to do that anyway.
+Summary: For now don't navigate to the last page when journeys are sorted (:D). I don't know is there any reasons to do that anyway.
  
 APP TESTS:
 - There some simple tests in the app. I'm currently learning more about testing, and i'll add more as soon as possible. 
