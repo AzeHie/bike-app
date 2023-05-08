@@ -33,8 +33,10 @@ ABOUT JOURNEYS PAGINATION WHEN SORTING (bug):
 Summary: For now don't navigate to the last page when journeys are sorted (:D). I don't know is there any reasons to do that anyway.
  
 APP TESTS:
-- There some simple tests in the app. I'm currently learning more about testing, and i'll add more as soon as possible. 
-- You can run test(s) simple with "npm test" in the frontend folders terminal on vs-code or some other IDE.
+- The app has some simple tests. I'm currently learning more about testing, and i'll add more as soon as possible. 
+- There is own tests for backend and frontend.
+- Run frontend tests simple with "npm test" in the frontend folders terminal on vs-code or some other IDE.
+- Run backend tests in the same way as frontend, but in the backend folder.
 
 HOW TO INSTALL AND MANUALLY TEST THE APPLICATION:
 - App is built and tested in windows, not sure how it works with linux. Node has to be installed on the computer.
