@@ -156,4 +156,15 @@ Added some data adjusting when new station or journey is added ==> first letter 
 ----
 
 3.5.2023
-Added first "dummy" test to the journeyItem. Plan is to learn more about testing and add more unit tests to the project.
+Frontend: Added first "dummy" test to the journeyItem. Plan is to learn more about testing and add more unit tests to the project.
+
+----
+
+6.5.2023
+Frontend: Added some unit tests to the input component
+
+----
+
+8.5.
+Backend: Added first unit tests to the backend, for the journey controllers (getStationById func).
+- That took quite long, since tests were failing all the time. I tried many different solutions, and then I realized that I have to create a own new connection to the mongoDB for tests, in the test file. Very simple solution took a long time, but that happens sometimes. Atleast it was a good learning session, I played with code and learned many different ways to do things with nodeJS unit testing.
