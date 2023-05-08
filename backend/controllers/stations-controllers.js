@@ -47,6 +47,11 @@ const getStationById = async (req, res, next) => {
 
   try {
     station = await Station.find({ _id: stationId });
+
+    if (!station) {
+      const error = new HttpError("Station not found with specified ID", 404);
+    }
+
   } catch (err) {
     const error = new HttpError("Fetching the station failed!", 500);
     return next(error);

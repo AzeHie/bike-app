@@ -8,8 +8,8 @@ const Map: React.FC<{ y: number; x: number }> = (props) => {
   useEffect(() => {
     const center = { lat: props.y, lng: props.x };
 
-    const map = new window.google.maps.Map(
-      mapRef.current, // imported in index.html
+    const map = new window.google.maps.Map( // imported in index.html
+      mapRef.current, 
       {
         center: center,
         zoom: 15,
@@ -19,7 +19,7 @@ const Map: React.FC<{ y: number; x: number }> = (props) => {
     new window.google.maps.Marker({ position: center, map: map });
   }, [props.y, props.x]);
 
-  return <div ref={mapRef} className="map"></div>;
+  return <div ref={mapRef} className="map" data-testid="map"></div>;
 };
 
 export default Map;
