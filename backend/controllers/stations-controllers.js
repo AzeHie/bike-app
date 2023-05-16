@@ -135,6 +135,7 @@ const getJourneyDataOfStation = async (req, res, next) => {
 };
 
 const addStation = async (req, res, next) => {
+  let station;
   let coordinates;
   let x;
   let y;
@@ -151,14 +152,22 @@ const addStation = async (req, res, next) => {
   x = coordinates.lng;
   y = coordinates.lat;
 
-  const station = new Station({
-    Nimi: req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1),
-    Osoite: req.body.address.charAt(0).toUpperCase() + req.body.address.slice(1),
-    Kaupunki: req.body.city.charAt(0).toUpperCase() + req.body.city.slice(1),
-    x: x,
-    y: y,
-  });
-
+  if (req.body.name && req.body.address && req.body.city) {
+    station = new Station({
+      Nimi: req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1),
+      Osoite: req.body.address.charAt(0).toUpperCase() + req.body.address.slice(1),
+      Kaupunki: req.body.city.charAt(0).toUpperCase() + req.body.city.slice(1),
+      x: x,
+      y: y,
+    });
+  } else {
+    const error = new HttpError(
+      "Could not add the new station, please check your details and try again!",
+      500
+    );
+    return next(error);
+  };
+  
   try {
     await station.save();
   } catch (err) {
