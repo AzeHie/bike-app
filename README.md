@@ -40,7 +40,7 @@ APP TESTS:
 - Run backend tests in the same way as frontend, but in the backend folder.
 
 GOOGLE MAP IN APP:
-- It's possible that MAP is not working anymore in JUNE, because of free trial has ended. But if necessary I can active it again.
+- It's possible that MAP will no longer work in JUNE, because of free trial has ended. But if necessary I can active it again.
 
 HOW TO INSTALL AND MANUALLY TEST THE APPLICATION:
 - App is built and tested in windows, not sure how it works with linux. Node has to be installed on the computer.
