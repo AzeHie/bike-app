@@ -33,10 +33,14 @@ ABOUT JOURNEYS PAGINATION WHEN SORTING (bug):
 Summary: For now don't navigate to the last page when journeys are sorted (:D). I don't know is there any reasons to do that anyway.
  
 APP TESTS:
-- The app has some simple tests. I'm currently learning more about testing, and i'll add more as soon as possible. 
+- I've found out that I should mock my database connections when testing app to save time, and especially not to save the data to the real database when testing the application. That's something I should definietly do in my projects in the future.
+- The app has just some simple tests. I'm currently learning more about testing, and i'll add more as soon as possible. 
 - There is own tests for backend and frontend.
 - Run frontend tests simple with "npm test" in the frontend folders terminal on vs-code or some other IDE.
 - Run backend tests in the same way as frontend, but in the backend folder.
+
+GOOGLE MAP IN APP:
+- It's possible that MAP is not working anymore in JUNE, because of free trial has ended. But if necessary I can active it again.
 
 HOW TO INSTALL AND MANUALLY TEST THE APPLICATION:
 - App is built and tested in windows, not sure how it works with linux. Node has to be installed on the computer.
