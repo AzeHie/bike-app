@@ -168,3 +168,7 @@ Frontend: Added some unit tests to the input component
 8.5.
 Backend: Added first unit tests to the backend, for the journey controllers (getStationById func).
 - That took quite long, since tests were failing all the time. I tried many different solutions, and then I realized that I have to create a own new connection to the mongoDB for tests, in the test file. Very simple solution took a long time, but that happens sometimes. Atleast it was a good learning session, I played with code and learned many different ways to do things with nodeJS unit testing.
+
+----
+16.5.
+After a week off, added some more tests for the backends station controllers.
