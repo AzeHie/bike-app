@@ -172,3 +172,7 @@ Backend: Added first unit tests to the backend, for the journey controllers (get
 ----
 16.5.
 After a week off, added some more tests for the backends station controllers.
+
+----
+1.6.
+Fixed a bug on the backend: One little typo in the mongoose schema and in the addJourney controller => departureStation was depatureStation. Since that newly added journey's departureStation was undefined on the journeysList.
