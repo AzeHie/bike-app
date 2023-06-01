@@ -29,9 +29,9 @@ const getJourneys = async (req, res, next) => {
     }
     if (sortBy && sortOrder) {
       journeys = await Journey.find(query)
-      .skip(page * itemsPerPage)
-      .limit(itemsPerPage)
-      .sort(sort);
+        .skip(page * itemsPerPage)
+        .limit(itemsPerPage)
+        .sort(sort);
 
       numbOfPages = await Journey.countDocuments(query, { hint: "_id_" });
     } else {
@@ -42,7 +42,6 @@ const getJourneys = async (req, res, next) => {
       numbOfPages = await Journey.countDocuments(query, { hint: "_id_" });
     }
   } catch (err) {
-    console.log(err);
     const error = new HttpError("Could not fetch data, please try again.", 500);
     return next(error);
   }
@@ -65,7 +64,7 @@ const addJourney = async (req, res, next) => {
   const journey = new Journey({
     Departure: req.body.departureTime,
     Return: req.body.returnTime,
-    DepatureStationName:
+    DepartureStationName:
       req.body.departureStation.charAt(0).toUpperCase() +
       req.body.departureStation.slice(1),
     ReturnStationName:

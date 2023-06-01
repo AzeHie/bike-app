@@ -58,18 +58,12 @@ const Journeys: React.FC = () => {
   const filterHandler = (filterTerm: string) => {
     setFilterTerm(filterTerm);
     // triggers useEffect
-  }
+  };
 
   useEffect(() => {
     const fetchJourneys = async () => {
       try {
         let responseData;
-        // if (filterTerm !== "") {
-        //   // add logic to sort and change pages even when filters are on
-        //   responseData = await sendRequest(
-        //     `http://localhost:5000/api/journeys/?filter=${filterTerm}`
-        //   );
-        // }
         if (!sortOrder || sortBy === "") {
           responseData = await sendRequest(
             `http://localhost:5000/api/journeys/?p=${page}&filter=${filterTerm}`
