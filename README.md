@@ -35,12 +35,13 @@ Summary: For now don't navigate to the last page when journeys are sorted (:D). 
 APP TESTS:
 - I've found out that I should mock my database connections when testing app to save time, and especially not to save the data to the real database when testing the application. That's something I should definietly do in my projects in the future.
 - The app has just some simple tests. I'm currently learning more about testing, and i'll add more as soon as possible. 
+- Only test of getJourneys on the backend not passing yet, some problems with chaining mongoDB's find-method with limit and skip methods.. I don't know how to mock that chaining yet.. 
 - There is own tests for backend and frontend.
 - Run frontend tests simple with "npm test" in the frontend folders terminal on vs-code or some other IDE.
 - Run backend tests in the same way as frontend, but in the backend folder.
 
 GOOGLE MAP IN APP:
-- It's possible that MAP will no longer work in JUNE, because of free trial has ended. But if necessary I can active it again.
+- MAP will no longer work in JUNE, because of free trial has ended. But if necessary I can active it again. That makes some issues with tests (some of them not passing anymore), and it's not possible to "view map" on the single station view anymore.
 
 HOW TO INSTALL AND MANUALLY TEST THE APPLICATION:
 - App is built and tested in windows, not sure how it works with linux. Node has to be installed on the computer.
