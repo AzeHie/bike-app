@@ -29,7 +29,6 @@ const JourneyList: React.FC<{
   };
 
   const onFilter = (filterTerm: string) => {
-
     props.filterHandler(filterTerm);
   }
 

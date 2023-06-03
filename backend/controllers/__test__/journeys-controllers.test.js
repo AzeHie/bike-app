@@ -15,6 +15,7 @@ describe("getJourneys", () => {
     Journey.find = jest.fn().mockResolvedValue(mockedJourneys);
     Journey.countDocuments.mockResolvedValue(mockedCount);
 
+
     const req = {
       query: {
         filter: undefined,

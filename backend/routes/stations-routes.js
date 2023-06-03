@@ -4,9 +4,6 @@ const { check } = require("express-validator");
 const stationControllers = require ("../controllers/stations-controllers");
 const router = express.Router();
 
-// add validation next
-// and information of completed add for the user (frontend)
-
 router.get("/", stationControllers.getStations);
 
 router.get("/:sid", stationControllers.getStationById);

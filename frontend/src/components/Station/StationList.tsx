@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Tooltip } from "@mui/material";
 import { FaSort } from "react-icons/fa";
 import { Pagination } from "@mui/material";
@@ -106,7 +106,7 @@ const StationList: React.FC<{
             <span>{item.city}</span>
           </NavLink>
         ))}
-        {props.stations.length < 25 ? (
+        {!!props.searchTerm ? (
           <div />
         ) : (
           <div className="pagination">

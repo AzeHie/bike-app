@@ -75,6 +75,7 @@ const Stations: React.FC = () => {
 
           tempStations.push(station);
         });
+        
         setLoadedStations(tempStations);
       } catch (err: any) {
         // error handling in http-hook
