@@ -11,7 +11,6 @@ const getStations = async (req, res, next) => {
   const page = req.query.p || 0;
   const itemsPerPage = 25;
 
-
   let sort = { [sortBy]: sortOrder };
   let stations;
   let numbOfPages;

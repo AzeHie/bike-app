@@ -1,29 +1,43 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useRef } from "react";
 import ReactDOM from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
 import Backdrop from "./Backdrop";
 import "./Modal.css";
 
-// another component in the same file, but only for "local use" === used by modal:
 const ModalOverlay: React.FC<
-  PropsWithChildren<{ header: string; onCancel: () => void }>
+  PropsWithChildren<{ header: string; onCancel: () => void; show: boolean }>
 > = (props) => {
+  const { show, header, onCancel } = props;
+  const modalRef = useRef(null);
+
   const content = (
     <div className="modal">
       <header className="modal-header">
-        <h2>{props.header}</h2>
+        <h2>{header}</h2>
       </header>
       <div className="modal-content">{props.children}</div>
       <div className="modal-button">
-        <button className="generic-button" onClick={props.onCancel}>
+        <button className="generic-button" onClick={onCancel}>
           CLOSE
         </button>
       </div>
     </div>
   );
+
   return ReactDOM.createPortal(
-    content,
+    show ? (
+      <CSSTransition
+        nodeRef={modalRef}
+        in={show}
+        mountOnEnter
+        unmountOnExit
+        timeout={200}
+        classNames="modal"
+      >
+        <div ref={modalRef}>{content}</div>
+      </CSSTransition>
+    ) : null,
     document.getElementById("modal-hook") as HTMLElement
   );
 };
@@ -34,15 +48,7 @@ const Modal: React.FC<
   return (
     <React.Fragment>
       {props.show && <Backdrop onClick={props.onCancel} />}
-      <CSSTransition
-        in={props.show}
-        mountOnEnter
-        unmountOnExit
-        timeout={200}
-        classNames="modal"
-      >
-        <ModalOverlay {...props} />
-      </CSSTransition>
+      <ModalOverlay {...props} />
     </React.Fragment>
   );
 };
