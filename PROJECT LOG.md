@@ -176,3 +176,7 @@ After a week off, added some more tests for the backends station controllers.
 ----
 1.6.
 Fixed a bug on the backend: One little typo in the mongoose schema and in the addJourney controller => departureStation was depatureStation. Since that newly added journey's departureStation was undefined on the journeysList.
+
+----
+11.6.
+Started adding mobileview to the application. Added mobileview for the main navigation..
