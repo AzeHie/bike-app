@@ -3,6 +3,7 @@
   height: 4rem;
   display: flex;
   align-items: center;
+  
   position: fixed;
   top: 0;
   left: 0;
@@ -14,4 +15,10 @@
 
 main {
   margin-top: 6rem;
+}
+
+@media (min-width: 768px) {
+  .main-header {
+    justify-content: center;
+  }
 }

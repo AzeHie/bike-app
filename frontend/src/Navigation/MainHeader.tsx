@@ -1,12 +1,9 @@
-import "./MainHeader.css";
-import NavLinks from "./NavLinks";
+import React, { PropsWithChildren } from "react";
 
-const MainHeader: React.FC = () => {
-  return (
-    <header className="main-header">
-      <NavLinks />
-    </header>
-  );
+import "./MainHeader.css";
+
+const MainHeader: React.FC<PropsWithChildren<{}>> = (props) => {
+  return <header className="main-header">{props.children}</header>;
 };
 
 export default MainHeader;

@@ -49,6 +49,7 @@ const getStationById = async (req, res, next) => {
 
     if (!station) {
       const error = new HttpError("Station not found with specified ID", 404);
+      return next(error);
     }
 
   } catch (err) {
@@ -69,7 +70,7 @@ const getStationById = async (req, res, next) => {
   };
 
   res.status(200).json({
-    station: modifiedStation,
+    station: modifiedStation
   });
 };
 

@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 });
 
 app.use((error, req, res, next) => { // error handling middleware
-  if (res.headerSent) {
+  if (res.headerSent) { // if response already initiated, stop executing
     return next(error);
   }
 

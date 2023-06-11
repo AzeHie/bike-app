@@ -67,7 +67,8 @@ const AddStation: React.FC = () => {
     isValid: false,
   });
 
-  const inputHandler = useCallback(
+  // since inputHandler is used in the Input-component's useEffect dependencies, it might cause infinity loop without useCallback
+  const inputHandler = useCallback( 
     (id: string, value: any, isValid: boolean) => {
       dispatch({
         type: "INPUT_CHANGE",

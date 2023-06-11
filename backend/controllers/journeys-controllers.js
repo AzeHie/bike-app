@@ -53,7 +53,7 @@ const getJourneys = async (req, res, next) => {
 };
 
 const addJourney = async (req, res, next) => {
-  if (req.body.departureTime > req.body.returnTime) {
+  if (req.body.departureTime > req.body.returnTime) { // if return time is before departure
     const error = new HttpError(
       "Departure time can not be after the return time",
       403

@@ -4,9 +4,9 @@ export const useHttpClient = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<any>();
 
-  const activeHttpRequests = useRef<any>([]);
+  const activeHttpRequests = useRef<any>([]); 
 
-  const sendRequest = useCallback(
+  const sendRequest = useCallback(  
     async (url: string, method = "GET", body: any = null, headers = {}) => {
       setIsLoading(true);
 
