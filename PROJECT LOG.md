@@ -180,3 +180,7 @@ Fixed a bug on the backend: One little typo in the mongoose schema and in the ad
 ----
 11.6.
 Started adding mobileview to the application. Added mobileview for the main navigation..
+
+----
+12.6.
+Added app-wide mobileview.
