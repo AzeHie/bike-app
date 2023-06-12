@@ -127,3 +127,13 @@
 .search-show-all-button:hover {
   background-color:rgb(115, 210, 115);
 }
+
+@media (max-width: 767px) {
+  .stations-item-line span {
+    width: 100%;
+    padding: 0.5rem 0 0.5rem 0;
+    border-bottom: 1px solid gray;
+    font-style: italic;
+    font-size: xx-small;
+  }
+}

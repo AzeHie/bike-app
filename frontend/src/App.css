@@ -20,3 +20,10 @@
   cursor:not-allowed;
   color: black;
 }
+
+@media (max-width: 767px) {
+  .generic-button {
+    font-size: 10px;
+    font-weight: bolder;
+  }
+}

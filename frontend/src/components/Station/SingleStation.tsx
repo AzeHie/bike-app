@@ -105,10 +105,10 @@ const SingleStation: React.FC<{
           </div>
         </div>
         <div>
-          <button className="generic-button" onClick={openMapHandler}>
+          <button className="generic-button btn-custom-width" onClick={openMapHandler}>
             SHOW ON MAP
           </button>
-          <button className="generic-button" onClick={backToListHandler}>
+          <button className="generic-button btn-custom-width" onClick={backToListHandler}>
             BACK TO STATION LIST
           </button>
         </div>

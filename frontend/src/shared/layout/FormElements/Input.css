@@ -37,3 +37,10 @@
   border-color: red;
   background: #ffd1d1;
 }
+
+@media (max-width: 767px) {
+  .form-control label,
+  .form-control input {
+    font-size: 10px;
+  }
+}

@@ -105,3 +105,9 @@
   background-color:rgb(115, 210, 115);
 }
 
+@media (max-width: 767px) {
+  .journeys-header-line span {
+    font-size: 10px;
+  }
+}
+

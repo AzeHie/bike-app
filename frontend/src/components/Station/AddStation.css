@@ -6,3 +6,9 @@
 .add-station-buttons {
   text-align: start;
 }
+
+@media (max-width: 767px) {
+  .add-station-container {
+    width: 100%;
+  }
+}

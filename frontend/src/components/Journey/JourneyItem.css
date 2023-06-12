@@ -19,3 +19,9 @@
 .journey-span {
   background: rgb(200, 200, 200);
 }
+
+@media (max-width: 767px) {
+  .journey-item-line span {
+    font-size: 6px;
+  }
+}

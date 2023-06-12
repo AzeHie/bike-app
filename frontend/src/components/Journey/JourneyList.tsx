@@ -136,7 +136,7 @@ const JourneyList: React.FC<{
             <Pagination
               count={props.numbOfPages}
               page={props.page}
-              size="large"
+              size="small"
               variant="outlined"
               onChange={onPageChange}
             />
